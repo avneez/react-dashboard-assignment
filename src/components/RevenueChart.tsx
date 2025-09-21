@@ -31,7 +31,7 @@ const RevenueChart: React.FC = () => {
     if (active && payload && payload.length) {
       // Get current value from either solid or dashed line
       const currentValue = payload.find((p: any) => p.dataKey === 'current')?.value ||
-                          payload.find((p: any) => p.dataKey === 'currentDashed')?.value;
+        payload.find((p: any) => p.dataKey === 'currentDashed')?.value;
       const previousValue = payload.find((p: any) => p.dataKey === 'previous')?.value;
 
       return (
@@ -71,20 +71,18 @@ const RevenueChart: React.FC = () => {
       }}
     >
       {/* Header and Legend */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-        <div className="flex items-center space-x-2 mb-2 sm:mb-0">
-          <h2 className="text-[14px] font-semibold leading-[20px] text-gray-800 dark:text-white">Revenue</h2>
-          <div className="h-6 w-px bg-gray-300 mx-2"></div>
-          <div className="flex items-center text-gray-600 dark:text-gray-400 space-x-1">
-            <span className="w-2 h-2 bg-black rounded-full inline-block"></span>
-            <span className="text-sm font-medium">Current Week</span>
-            <span className="font-bold text-gray-800 dark:text-white">$58,211</span>
-          </div>
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
+        <h2 className="text-[14px] font-semibold leading-[20px] text-gray-800 dark:text-white">Revenue</h2>
+        <div className="h-4 w-px bg-gray-300 mx-2"></div>
+        <div className="flex items-center text-gray-600 dark:text-gray-400">
+          <span className="w-[6px] h-[6px] bg-black rounded-full inline-block m-[5px]"></span>
+          <span className="text-[12px] font-medium">Current Week</span>
+          <span className="text-[12px] font-semibold text-gray-800 dark:text-white ml-2">$58,211</span>
         </div>
-        <div className="flex items-center text-gray-600 dark:text-gray-400 space-x-1">
-          <span className="w-2 h-2 bg-blue-300 rounded-full inline-block"></span>
-          <span className="text-sm font-medium">Previous Week</span>
-          <span className="font-bold text-gray-800 dark:text-white">$68,768</span>
+        <div className="flex items-center text-gray-600 dark:text-gray-400">
+          <span className="w-[6px] h-[6px] bg-blue-300 rounded-full inline-block m-[5px]"></span>
+          <span className="text-[12px] font-medium">Previous Week</span>
+          <span className="text-[12px] font-semibold text-gray-800 dark:text-white ml-2">$68,768</span>
         </div>
       </div>
 
@@ -108,14 +106,14 @@ const RevenueChart: React.FC = () => {
               tick={{ fontSize: 12, fill: '#6B7280', fontFamily: 'Inter' }}
               tickMargin={10}
               interval={0}
-              padding={{left:10, right:10}}
+              padding={{ left: 10, right: 10 }}
             />
             <YAxis
               axisLine={false}
               tickLine={false}
               domain={[0, 30]}
               ticks={[0, 10, 20, 30]}
-              tickFormatter={(value) => value!==0 ? `${value}M` : `${value}`}
+              tickFormatter={(value) => value !== 0 ? `${value}M` : `${value}`}
               tick={{ fontSize: 12, fill: '#6B7280', fontFamily: 'Inter' }}
               width={24}
               tickMargin={16}

@@ -25,7 +25,7 @@ const ContactsSection: React.FC<ContactsSectionProps> = ({ contacts }) => {
         {contacts.map((contact) => (
           <div
             key={contact.id}
-            className="flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer w-[232px] h-[48px] gap-2 p-1"
+            className="flex items-center rounded-[8px] hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer w-[232px] gap-2 p-1"
           >
             <div className="w-6 h-6">
               <img

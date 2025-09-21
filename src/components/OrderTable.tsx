@@ -54,10 +54,10 @@ const CustomCheckbox: React.FC<{
   return (
     <div
       onClick={onChange}
-      className={`w-[14px] h-[14px] rounded border cursor-pointer flex items-center justify-center transition-all duration-200 ${
+      className={`w-[14px] h-[14px] rounded-[4px] border cursor-pointer flex items-center justify-center transition-all duration-200 ${
         checked
-          ? "bg-black border-black"
-          : "bg-gray-100 border-gray-300 dark:bg-gray-800 dark:border-gray-600"
+          ? "bg-black dark:bg-[#c6c7f8] border-black dark:border-[#6c67f8]"
+          : "bg-gray-100 border-gray-300 dark:bg-black dark:border-[#FFFFFF33]"
       }`}
     >
       {checked && (
@@ -67,10 +67,10 @@ const CustomCheckbox: React.FC<{
           viewBox="0 0 10 8"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className=" stroke-white dark:stroke-black"
         >
           <path
             d="M8.5 1.5L3.5 6.5L1.5 4.5"
-            stroke="white"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"

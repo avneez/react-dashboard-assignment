@@ -422,12 +422,12 @@ const ActionsBar = () => {
 
 const SearchBar = () => {
   return (
-    <div className="flex items-center bg-gray-100 dark:bg-black border border-gray-300 dark:border-gray-600 w-[160px] h-[28px] gap-[8px] rounded-[8px] pt-[4px] pr-[8px] pb-[4px] pl-[8px]">
-      <SearchIcon className="text-gray-700 dark:text-white" />
+    <div className="flex items-center bg-white dark:bg-black border-gray-300 dark:border-gray-600 w-[160px] h-[28px] gap-[4px] rounded-[8px] pt-[4px] pr-[8px] pb-[4px] pl-[8px] border-[1px]">
+      <SearchIcon />
       <input
         type="text"
         placeholder="Search"
-        className="text-gray-900 dark:text-gray-100 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none min-w-0 flex-1 text-sm"
+        className="text-gray-900 dark:text-gray-100 bg-transparent placeholder-[#1C1C1C33] dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none min-w-0 flex-1 text-sm"
       />
     </div>
   );

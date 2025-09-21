@@ -55,9 +55,9 @@ const SidebarFavourites: React.FC<SidebarFavouritesProps> = ({
                   "w-full flex items-center rounded-[8px] transition-colors group",
                   isOpen ? "px-2 py-1" : "px-2 py-2 justify-center",
                   {
-                    "bg-gray-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400":
+                    "bg-gray-100 dark:bg-[#ffffff1a]":
                       item.active,
-                    "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800":
+                    "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#ffffff1a]":
                       !item.active,
                   }
                 )}

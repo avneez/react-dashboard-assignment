@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 
 interface LocationData {
   id: number;
@@ -80,16 +81,12 @@ const RevenueByLocation: React.FC = () => {
         }}
       >
         {/* World Map */}
-        <img
-          src="/World Map.png"
-          alt="World Map"
-          className="w-full h-full object-cover"
-        />
+      <MapWithMarkers/>
       </div>
 
       {/* City List with Progress Bars */}
-      <div className="flex-1 overflow-hidden">
-        <div className="space-y-2">
+      <div className="flex-1">
+        <div className="space-y-4">
           {locationData.map((location, index) => {
             // Calculate bar width as percentage of max revenue (100K)
             const barWidth = (location.revenue / maxRevenue) * 114; // 114px max width as specified
@@ -104,16 +101,16 @@ const RevenueByLocation: React.FC = () => {
               >
                 {/* City Name and Revenue */}
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-900 dark:text-white font-medium text-[12px]">
+                  <span className="text-gray-900 dark:text-white text-[12px]">
                     {location.city}
                   </span>
-                  <span className="text-gray-600 dark:text-gray-400 text-[12px] font-medium">
+                  <span className="text-[#1C1C1C] dark:text-gray-400 text-[12px]">
                     {(location.revenue / 1000).toFixed(0)}K
                   </span>
                 </div>
 
                 {/* Progress Bar Container */}
-                <div className="relative">
+                <div className="relative mt-0" style={{marginTop: 0}}>
                   {/* Background Bar */}
                   <div
                     className="bg-gray-200 dark:bg-gray-600"
@@ -146,3 +143,50 @@ const RevenueByLocation: React.FC = () => {
 };
 
 export default RevenueByLocation;
+
+
+const geoUrl: string =
+  "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
+type MarkerType = {
+  name: string;
+  coordinates: [number, number]; // [longitude, latitude]
+};
+
+const markers: MarkerType[] = [
+  { name: "New York", coordinates: [-74.006, 40.7128] },      // New York City
+  { name: "San Francisco", coordinates: [-122.4194, 37.7749] }, // San Francisco
+  { name: "Singapore", coordinates: [103.8198, 1.3521] },       // Singapore
+  { name: "Australia", coordinates: [151.2093, -33.8688] },    // Sydney
+];
+
+const MapWithMarkers: React.FC = () => {
+  return (
+    <ComposableMap>
+      <Geographies geography={geoUrl}>
+        {({ geographies }) =>
+          geographies.map((geo) => (
+            <Geography
+              key={geo.rsmKey}
+              geography={geo}
+              fill="#A8C5DA" 
+              stroke="#A8C5DA"
+              strokeWidth={0.5}
+            />
+          ))
+        }
+      </Geographies>
+
+      {markers.map(({ name, coordinates }) => (
+        <Marker key={name} coordinates={coordinates}>
+          <circle
+            r={12}
+            fill="#000000"
+            stroke="#FFFFFF"
+            strokeWidth={4} 
+          />
+        </Marker>
+      ))}
+    </ComposableMap>
+  );
+};

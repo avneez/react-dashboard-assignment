@@ -73,8 +73,8 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
                 'w-full flex items-center rounded-[8px] transition-colors group',
                 isOpen ? 'px-2 py-1' : 'px-2 py-2 justify-center',
                 {
-                  'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400': item.active,
-                  'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800': !item.active
+                  'bg-blue-50 dark:bg-[#ffffff1a]': item.active,
+                  'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#ffffff1a]': !item.active
                 }
               )}
             >
@@ -120,7 +120,7 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
                   <li key={subIndex}>
                     <button
                       onClick={() => onNavigate(subItem.path)}
-                      className="w-full text-left px-2 py-1 font-inter font-normal text-[14px] leading-[20px] text-[#1C1C1C] dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                      className="w-full text-left px-2 py-1 font-inter font-normal text-[14px] leading-[20px] text-[#1C1C1C] dark:text-white hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-[#ffffff1a] rounded-lg transition-colors"
                       style={{
                         fontStyle: 'normal',
                         letterSpacing: '0%'

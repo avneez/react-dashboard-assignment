@@ -39,7 +39,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
       }}
     >
       <div className="flex flex-col">
-        <p className={`text-sm font-medium mb-2 ${
+        <p className={`text-[14px] font-semibold mb-2 ${
           hasCustomBg
             ? 'text-gray-600'
             : isOrdersOrRevenue
@@ -49,7 +49,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
           {title}
         </p>
         <div className="flex items-center justify-between gap-4">
-          <p className={`text-2xl font-bold ${
+          <p className={`text-2xl font-semibold ${
             hasCustomBg
               ? 'text-gray-900'
               : isOrdersOrRevenue

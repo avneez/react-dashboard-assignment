@@ -110,13 +110,6 @@ const NotificationsPanel: React.FC<NotificationsPanelProps> = () => {
           msOverflowStyle: "none" /* IE and Edge */,
         }}
       >
-        <style>
-          {`
-            div::-webkit-scrollbar {
-              display: none; /* Chrome, Safari, Opera */
-            }
-          `}
-        </style>
 
         {/* Notifications Section */}
         <NotificationsSection notifications={notifications} />
