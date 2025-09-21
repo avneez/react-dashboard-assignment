@@ -52,7 +52,7 @@ const RevenueByLocation: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.4 }}
-      className="bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 font-inter overflow-hidden"
+      className="bg-[#F7F9FB] dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 font-inter overflow-hidden"
       style={{
         width: '202px',
         height: '318px',
@@ -72,14 +72,14 @@ const RevenueByLocation: React.FC = () => {
         </h3>
       </div>      {/* World Map Container */}
       <div
-        className="relative bg-gray-50 dark:bg-gray-700 rounded-lg mb-2 flex-shrink-0 border border-gray-200 dark:border-gray-600 overflow-hidden"
+        className="relative rounded-lg mb-2 flex-shrink-0 border-gray-200 dark:border-gray-600 overflow-hidden"
         style={{
           width: '154px',
           height: '82px',
           borderRadius: '8px'
         }}
       >
-        {/* World Map PNG Image */}
+        {/* World Map */}
         <img
           src="/World Map.png"
           alt="World Map"
@@ -108,10 +108,10 @@ const RevenueByLocation: React.FC = () => {
               >
                 {/* City Name and Revenue */}
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-900 dark:text-white font-medium text-sm">
+                  <span className="text-gray-900 dark:text-white font-medium text-[12px]">
                     {location.city}
                   </span>
-                  <span className="text-gray-600 dark:text-gray-400 text-sm font-medium">
+                  <span className="text-gray-600 dark:text-gray-400 text-[12px] font-medium">
                     {(location.revenue / 1000).toFixed(0)}K
                   </span>
                 </div>

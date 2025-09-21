@@ -9,28 +9,46 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
+import { useTheme } from '../contexts/ThemeContext';
 
-// The data structure now combines the solid and dotted lines under 'current' again.
+// The data structure - split current data into solid (Jan-Apr) and dashed (May-Jun) portions
 const data = [
-  { name: 'Jan', current: 15, previous: 10 },
-  { name: 'Feb', current: 10, previous: 18 },
-  { name: 'Mar', current: 12, previous: 16 },
-  { name: 'Apr', current: 18, previous: 12 },
-  { name: 'May', current: 21, previous: 15 },
-  { name: 'Jun', current: 22, previous: 25 },
+  { name: 'Jan', current: 15, previous: 10, currentDashed: null },
+  { name: 'Feb', current: 10, previous: 18, currentDashed: null },
+  { name: 'Mar', current: 12, previous: 17, currentDashed: null },
+  { name: 'Apr', current: 18, previous: 12, currentDashed: 18 },
+  { name: 'May', current: null, previous: 16, currentDashed: 22 },
+  { name: 'Jun', current: null, previous: 25, currentDashed: 22 },
 ];
 
 const RevenueChart: React.FC = () => {
-  const CustomTooltip = ({ active, payload }: any) => {
+  const { isDarkMode } = useTheme();
+
+  // Dynamic stroke color based on theme
+  const currentLineColor = isDarkMode ? '#C6C7F8' : '#000000';
+
+  const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
+      // Get current value from either solid or dashed line
+      const currentValue = payload.find((p: any) => p.dataKey === 'current')?.value ||
+                          payload.find((p: any) => p.dataKey === 'currentDashed')?.value;
+      const previousValue = payload.find((p: any) => p.dataKey === 'previous')?.value;
+
       return (
         <div className="p-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-md">
-          <p className="text-gray-700 dark:text-gray-300">
-            {`Current Week: $${(payload[0].value * 1000).toLocaleString()}`}
+          <p className="font-bold text-black dark:text-white">
+            {`${label}`}
           </p>
-          <p className="text-gray-700 dark:text-gray-300">
-            {`Previous Week: $${(payload[1].value * 1000).toLocaleString()}`}
-          </p>
+          {currentValue && (
+            <p className="text-gray-700 dark:text-gray-300">
+              {`Current Week: $${(currentValue * 1000).toLocaleString()}`}
+            </p>
+          )}
+          {previousValue && (
+            <p className="text-gray-700 dark:text-gray-300">
+              {`Previous Week: $${(previousValue * 1000).toLocaleString()}`}
+            </p>
+          )}
         </div>
       );
     }
@@ -71,14 +89,14 @@ const RevenueChart: React.FC = () => {
       </div>
 
       {/* Chart Container */}
-      <div className="w-full h-48">
+      <div className="w-[614px] h-[232px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={data}
             margin={{
               top: 5,
-              right: 30,
-              left: 20,
+              right: 18,
+              left: 25,
               bottom: 5,
             }}
           >
@@ -88,7 +106,9 @@ const RevenueChart: React.FC = () => {
               axisLine={false}
               tickLine={false}
               tick={{ fontSize: 12, fill: '#6B7280', fontFamily: 'Inter' }}
-              padding={{left:15, right:15}}
+              tickMargin={10}
+              interval={0}
+              padding={{left:10, right:10}}
             />
             <YAxis
               axisLine={false}
@@ -97,6 +117,8 @@ const RevenueChart: React.FC = () => {
               ticks={[0, 10, 20, 30]}
               tickFormatter={(value) => value!==0 ? `${value}M` : `${value}`}
               tick={{ fontSize: 12, fill: '#6B7280', fontFamily: 'Inter' }}
+              width={24}
+              tickMargin={16}
             />
             <Tooltip content={<CustomTooltip />} />
             <Line
@@ -107,22 +129,26 @@ const RevenueChart: React.FC = () => {
               dot={false}
               activeDot={{ r: 8 }}
             />
+            {/* Solid line for current data (Jan-Apr) */}
             <Line
               type="natural"
               dataKey="current"
-              stroke="#000000"
+              stroke={currentLineColor}
               strokeWidth={3}
               dot={false}
               activeDot={{ r: 8 }}
+              connectNulls={false}
             />
+            {/* Dashed line for current data (May-Jun) */}
             <Line
               type="natural"
-              dataKey="projected"
-              stroke="#000000"
+              dataKey="currentDashed"
+              stroke={currentLineColor}
               strokeWidth={3}
               strokeDasharray="5 5"
               dot={false}
-              activeDot={false}
+              activeDot={{ r: 8 }}
+              connectNulls={false}
             />
           </LineChart>
         </ResponsiveContainer>
