@@ -8,9 +8,9 @@ import RevenueByLocation from '../components/RevenueByLocation';
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="flex">
+    <div className="flex dark:bg-black">
       {/* Main Content Container */}
-      <div className="flex-1 xl:pr-[300px]">
+      <div className="flex-1 xl:pr-[300px] ml-[30px] ">
         {/* Page Header */}
         <div className="flex items-center justify-between space-y-6 mb-6">
           <div>

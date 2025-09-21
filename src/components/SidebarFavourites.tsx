@@ -39,9 +39,10 @@ const SidebarFavourites: React.FC<SidebarFavouritesProps> = ({
   return (
     <div className="pb-3">
       {isOpen && (
-        <h3 className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
-          Favourites
-        </h3>
+        <div className="text-[14px] mb-1 flex">
+          <p className="text-[#1C1C1C66] px-2 py-1">Favourites</p>  <p className="text-[#1C1C1C33] ml-2 px-2 py-1">Recently</p>
+        </div>
+
       )}
 
       <div>
@@ -51,12 +52,12 @@ const SidebarFavourites: React.FC<SidebarFavouritesProps> = ({
               <button
                 onClick={() => onNavigate(item.path)}
                 className={clsx(
-                  "w-full flex items-center rounded-lg transition-colors group",
-                  isOpen ? "px-3 py-2" : "px-2 py-2 justify-center",
+                  "w-full flex items-center rounded-[8px] transition-colors group",
+                  isOpen ? "px-2 py-1" : "px-2 py-2 justify-center",
                   {
-                    "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400":
+                    "bg-gray-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400":
                       item.active,
-                    "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700":
+                    "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800":
                       !item.active,
                   }
                 )}
@@ -73,7 +74,7 @@ const SidebarFavourites: React.FC<SidebarFavouritesProps> = ({
                   <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="font-inter font-normal text-[14px] leading-[20px] text-[#1C1C1C] dark:text-white ml-3"
+                    className="font-inter font-normal text-[14px] leading-[20px] text-[#1C1C1C] dark:text-white ml-1"
                     style={{
                       fontStyle: "normal",
                       letterSpacing: "0%",

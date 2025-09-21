@@ -53,9 +53,9 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
   return (
     <div className={clsx('pb-3', isOpen ? getWrapperHeight() : '')}>
       {isOpen && (
-        <h3 className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+        <p className="text-[#1C1C1C66] text-[14px] px-3 py-1 dark:text-gray-400 tracking-wider mb-1">
           Pages
-        </h3>
+        </p>
       )}
 
       <ul className="space-y-1">
@@ -70,17 +70,17 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
                 }
               }}
               className={clsx(
-                'w-full flex items-center rounded-lg transition-colors group',
-                isOpen ? 'px-3 py-2' : 'px-2 py-2 justify-center',
+                'w-full flex items-center rounded-[8px] transition-colors group',
+                isOpen ? 'px-2 py-1' : 'px-2 py-2 justify-center',
                 {
                   'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400': item.active,
-                  'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700': !item.active
+                  'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800': !item.active
                 }
               )}
             >
               {/* Always render caret space for consistent alignment when open */}
               {isOpen && (
-                <div className="flex-shrink-0 w-4 h-4">
+                <div className="flex-shrink-0 w-4 h-4 mr-1">
                   {item.hasSubItems ? (
                     isUserProfileExpanded ? <CaretDownIcon /> : <CaretRightIcon />
                   ) : (
@@ -90,7 +90,7 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
               )}
               <item.icon className={clsx('w-5 h-5 flex-shrink-0', isOpen ? 'ml-3' : '', {
                 'text-blue-600 dark:text-blue-400': item.active,
-                'text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
+                'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
               })} />
               {isOpen && (
                 <motion.span
@@ -114,13 +114,13 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.2 }}
-                className="ml-8 mt-2 space-y-1"
+                className="ml-12 mt-1 mb-1 space-y-1"
               >
                 {item.subItems?.map((subItem: SubItem, subIndex: number) => (
                   <li key={subIndex}>
                     <button
                       onClick={() => onNavigate(subItem.path)}
-                      className="w-full text-left px-3 py-2 font-inter font-normal text-[14px] leading-[20px] text-[#1C1C1C] dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                      className="w-full text-left px-2 py-1 font-inter font-normal text-[14px] leading-[20px] text-[#1C1C1C] dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
                       style={{
                         fontStyle: 'normal',
                         letterSpacing: '0%'

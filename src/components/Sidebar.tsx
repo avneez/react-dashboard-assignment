@@ -20,22 +20,21 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   return (
     <motion.aside
       animate={{ width: isOpen ? 212 : 64 }}
-      className="fixed left-0 top-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-50 font-inter overflow-hidden"
+      className="fixed left-0 top-0 h-full bg-white dark:bg-black border-r border-gray-200 dark:border-gray-700 z-50 font-inter overflow-hidden"
       style={{ minWidth: '64px' }}
     >
-      <div className={isOpen ? "p-6" : "p-3"}>
-        {/* Logo */}
-        <div className="flex items-center gap-3 mb-8">
+      <div className={isOpen ? "px-4 py-5" : "p-3"}>
+        <div className="flex items-center gap-2 mb-4 p-1">
           <img
             src='/ByeWindAvatar.png'
             alt="ByeWind Logo"
-            className="w-8 h-8 rounded-lg object-cover"
+            className="w-6 h-6 rounded-lg object-cover"
           />
           {isOpen && (
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="font-inter font-normal text-[14px] leading-5 text-gray-900 dark:text-white"
+              className="font-inter font-normal text-[14px] leading-5 text-[#1C1C1C] dark:text-white"
               style={{
               fontStyle: 'normal',
               letterSpacing: '0%',
@@ -47,7 +46,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
         </div>
 
         {/* Menu Items */}
-        <nav className="flex gap-1 pb-3 flex-col">
+        <nav className="flex gap-4 pb-3 flex-col">
           <SidebarFavourites isOpen={isOpen} onNavigate={handleNavigation} />
           <SidebarDashboards isOpen={isOpen} onNavigate={handleNavigation} />
           <SidebarPages isOpen={isOpen} onNavigate={handleNavigation} />

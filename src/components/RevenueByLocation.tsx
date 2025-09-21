@@ -52,7 +52,7 @@ const RevenueByLocation: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.4 }}
-      className="bg-[#F7F9FB] dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 font-inter overflow-hidden"
+      className="bg-[#F7F9FB] dark:bg-[#18181b] shadow-sm border border-gray-100 dark:border-gray-700 font-inter overflow-hidden"
       style={{
         width: '202px',
         height: '318px',
@@ -84,10 +84,6 @@ const RevenueByLocation: React.FC = () => {
           src="/World Map.png"
           alt="World Map"
           className="w-full h-full object-cover"
-          style={{
-            filter: 'grayscale(100%) brightness(1.1) contrast(0.9)',
-            opacity: 0.7
-          }}
         />
       </div>
 

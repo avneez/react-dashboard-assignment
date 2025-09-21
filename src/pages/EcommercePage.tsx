@@ -112,18 +112,308 @@ const orders: Order[] = [
     status: "Rejected",
     orderId: "#CM9805",
   },
+  {
+    id: "11",
+    user: { name: "Andi Lane", avatar: "/Female08.png" },
+    project: "App Landing Page",
+    address: "Nest Lane Olivette",
+    date: "Feb 2, 2023",
+    status: "Rejected",
+    orderId: "#CM9805",
+  },
+  {
+    id: "12",
+    user: { name: "Natali Craig", avatar: "/Female15.png" },
+    project: "Landing Page",
+    address: "Meadow Lane Oakland",
+    date: "Just now",
+    status: "In Progress",
+    orderId: "#CM9801",
+  },
+  {
+    id: "13",
+    user: { name: "Kate Morrison", avatar: "/Female09.png" },
+    project: "CRM Admin pages",
+    address: "Larry San Francisco",
+    date: "A minute ago",
+    status: "Complete",
+    orderId: "#CM9802",
+  },
+  {
+    id: "14",
+    user: { name: "Drew Cano", avatar: "/Male08.png" },
+    project: "Client Project",
+    address: "Bagwell Avenue Ocala",
+    date: "1 hour ago",
+    status: "Pending",
+    orderId: "#CM9803",
+  },
+  {
+    id: "15",
+    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
+    project: "Admin Dashboard",
+    address: "Washburn Baton Rouge",
+    date: "Yesterday",
+    status: "Approved",
+    orderId: "#CM9804",
+  },
+  {
+    id: "16",
+    user: { name: "Andi Lane", avatar: "/Female08.png" },
+    project: "App Landing Page",
+    address: "Nest Lane Olivette",
+    date: "Feb 2, 2023",
+    status: "Rejected",
+    orderId: "#CM9805",
+  },
+  {
+    id: "17",
+    user: { name: "Natali Craig", avatar: "/Female15.png" },
+    project: "Landing Page",
+    address: "Meadow Lane Oakland",
+    date: "Just now",
+    status: "In Progress",
+    orderId: "#CM9801",
+  },
+  {
+    id: "18",
+    user: { name: "Kate Morrison", avatar: "/Female09.png" },
+    project: "CRM Admin pages",
+    address: "Larry San Francisco",
+    date: "A minute ago",
+    status: "Complete",
+    orderId: "#CM9802",
+  },
+  {
+    id: "19",
+    user: { name: "Drew Cano", avatar: "/Male08.png" },
+    project: "Client Project",
+    address: "Bagwell Avenue Ocala",
+    date: "1 hour ago",
+    status: "Pending",
+    orderId: "#CM9803",
+  },
+  {
+    id: "20",
+    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
+    project: "Admin Dashboard",
+    address: "Washburn Baton Rouge",
+    date: "Yesterday",
+    status: "Approved",
+    orderId: "#CM9804",
+  },
+  {
+    id: "21",
+    user: { name: "Andi Lane", avatar: "/Female08.png" },
+    project: "App Landing Page",
+    address: "Nest Lane Olivette",
+    date: "Feb 2, 2023",
+    status: "Rejected",
+    orderId: "#CM9805",
+  },
+  {
+    id: "22",
+    user: { name: "Natali Craig", avatar: "/Female15.png" },
+    project: "Landing Page",
+    address: "Meadow Lane Oakland",
+    date: "Just now",
+    status: "In Progress",
+    orderId: "#CM9801",
+  },
+  {
+    id: "23",
+    user: { name: "Kate Morrison", avatar: "/Female09.png" },
+    project: "CRM Admin pages",
+    address: "Larry San Francisco",
+    date: "A minute ago",
+    status: "Complete",
+    orderId: "#CM9802",
+  },
+  {
+    id: "24",
+    user: { name: "Drew Cano", avatar: "/Male08.png" },
+    project: "Client Project",
+    address: "Bagwell Avenue Ocala",
+    date: "1 hour ago",
+    status: "Pending",
+    orderId: "#CM9803",
+  },
+  {
+    id: "26",
+    user: { name: "Andi Lane", avatar: "/Female08.png" },
+    project: "App Landing Page",
+    address: "Nest Lane Olivette",
+    date: "Feb 2, 2023",
+    status: "Rejected",
+    orderId: "#CM9805",
+  },
+  {
+    id: "27",
+    user: { name: "Natali Craig", avatar: "/Female15.png" },
+    project: "Landing Page",
+    address: "Meadow Lane Oakland",
+    date: "Just now",
+    status: "In Progress",
+    orderId: "#CM9801",
+  },
+  {
+    id: "28",
+    user: { name: "Kate Morrison", avatar: "/Female09.png" },
+    project: "CRM Admin pages",
+    address: "Larry San Francisco",
+    date: "A minute ago",
+    status: "Complete",
+    orderId: "#CM9802",
+  },
+  {
+    id: "29",
+    user: { name: "Drew Cano", avatar: "/Male08.png" },
+    project: "Client Project",
+    address: "Bagwell Avenue Ocala",
+    date: "1 hour ago",
+    status: "Pending",
+    orderId: "#CM9803",
+  },
+  {
+    id: "25",
+    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
+    project: "Admin Dashboard",
+    address: "Washburn Baton Rouge",
+    date: "Yesterday",
+    status: "Approved",
+    orderId: "#CM9804",
+  },
+
+  {
+    id: "30",
+    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
+    project: "Admin Dashboard",
+    address: "Washburn Baton Rouge",
+    date: "Yesterday",
+    status: "Approved",
+    orderId: "#CM9804",
+  },
+  {
+    id: "31",
+    user: { name: "Andi Lane", avatar: "/Female08.png" },
+    project: "App Landing Page",
+    address: "Nest Lane Olivette",
+    date: "Feb 2, 2023",
+    status: "Rejected",
+    orderId: "#CM9805",
+  },
+  {
+    id: "32",
+    user: { name: "Natali Craig", avatar: "/Female15.png" },
+    project: "Landing Page",
+    address: "Meadow Lane Oakland",
+    date: "Just now",
+    status: "In Progress",
+    orderId: "#CM9801",
+  },
+  {
+    id: "33",
+    user: { name: "Kate Morrison", avatar: "/Female09.png" },
+    project: "CRM Admin pages",
+    address: "Larry San Francisco",
+    date: "A minute ago",
+    status: "Complete",
+    orderId: "#CM9802",
+  },
+  {
+    id: "34",
+    user: { name: "Drew Cano", avatar: "/Male08.png" },
+    project: "Client Project",
+    address: "Bagwell Avenue Ocala",
+    date: "1 hour ago",
+    status: "Pending",
+    orderId: "#CM9803",
+  },
+
+  {
+    id: "37",
+    user: { name: "Natali Craig", avatar: "/Female15.png" },
+    project: "Landing Page",
+    address: "Meadow Lane Oakland",
+    date: "Just now",
+    status: "In Progress",
+    orderId: "#CM9801",
+  },
+  {
+    id: "35",
+    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
+    project: "Admin Dashboard",
+    address: "Washburn Baton Rouge",
+    date: "Yesterday",
+    status: "Approved",
+    orderId: "#CM9804",
+  },
+  {
+    id: "36",
+    user: { name: "Andi Lane", avatar: "/Female08.png" },
+    project: "App Landing Page",
+    address: "Nest Lane Olivette",
+    date: "Feb 2, 2023",
+    status: "Rejected",
+    orderId: "#CM9805",
+  },
+  {
+    id: "38",
+    user: { name: "Kate Morrison", avatar: "/Female09.png" },
+    project: "CRM Admin pages",
+    address: "Larry San Francisco",
+    date: "A minute ago",
+    status: "Complete",
+    orderId: "#CM9802",
+  },
+  {
+    id: "39",
+    user: { name: "Drew Cano", avatar: "/Male08.png" },
+    project: "Client Project",
+    address: "Bagwell Avenue Ocala",
+    date: "1 hour ago",
+    status: "Pending",
+    orderId: "#CM9803",
+  },
+  {
+    id: "40",
+    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
+    project: "Admin Dashboard",
+    address: "Washburn Baton Rouge",
+    date: "Yesterday",
+    status: "Approved",
+    orderId: "#CM9804",
+  },
+  {
+    id: "41",
+    user: { name: "Andi Lane", avatar: "/Female08.png" },
+    project: "App Landing Page",
+    address: "Nest Lane Olivette",
+    date: "Feb 2, 2023",
+    status: "Rejected",
+    orderId: "#CM9805",
+  },
+  {
+    id: "42",
+    user: { name: "Natali Craig", avatar: "/Female15.png" },
+    project: "Landing Page",
+    address: "Meadow Lane Oakland",
+    date: "Just now",
+    status: "In Progress",
+    orderId: "#CM9801",
+  },
 ];
 
 const ActionsBar = () => {
   return (
     <div className="flex items-center flex-1 h-[28px] gap-[8px] rounded-[8px] max-w-[900px]">
-      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded transition-colors">
         <PlusIcon />
       </button>
-      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded transition-colors">
         <FilterIcon />
       </button>
-      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded transition-colors">
         <SortIcon />
       </button>
     </div>
@@ -132,42 +422,13 @@ const ActionsBar = () => {
 
 const SearchBar = () => {
   return (
-    <div className="flex items-center bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 w-[160px] h-[28px] gap-[8px] rounded-[8px] pt-[4px] pr-[8px] pb-[4px] pl-[8px] border-[1px]">
-      <SearchIcon />
+    <div className="flex items-center bg-gray-100 dark:bg-black border border-gray-300 dark:border-gray-600 w-[160px] h-[28px] gap-[8px] rounded-[8px] pt-[4px] pr-[8px] pb-[4px] pl-[8px]">
+      <SearchIcon className="text-gray-700 dark:text-white" />
       <input
         type="text"
         placeholder="Search"
         className="text-gray-900 dark:text-gray-100 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none min-w-0 flex-1 text-sm"
       />
-    </div>
-  );
-};
-
-const Pagination = () => {
-  return (
-    <div className="flex items-center justify-end mt-4">
-      <div className="flex items-center gap-2 w-[244px] h-[28px]">
-        <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors w-7 h-7 flex items-center justify-center">
-          <span className="text-gray-500 dark:text-gray-400 text-sm">‹</span>
-        </button>
-
-        {[1, 2, 3, 4, 5].map((page) => (
-          <button
-            key={page}
-            className={`w-7 h-7 rounded transition-colors flex items-center justify-center text-sm ${
-              page === 1
-                ? "bg-blue-600 text-white"
-                : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-            }`}
-          >
-            {page}
-          </button>
-        ))}
-
-        <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors w-7 h-7 flex items-center justify-center">
-          <span className="text-gray-500 dark:text-gray-400 text-sm">›</span>
-        </button>
-      </div>
     </div>
   );
 };
@@ -213,16 +474,16 @@ const EcommercePage: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="bg-white dark:bg-gray-800 w-full max-w-[1172px] min-h-[600px] mt-[16px] flex flex-col gap-[12px] p-0 rounded-lg transition-all duration-300 ease-in-out"
+        className="bg-white dark:bg-black w-full max-w-[1172px] min-h-[600px] mt-[16px] flex flex-col gap-[12px] p-0 rounded-lg transition-all duration-300 ease-in-out"
       >
         {/* Table Header Actions */}
-        <div className="flex items-center justify-between bg-[#F7F9FB] dark:bg-gray-700 opacity-100 w-[calc(100%-24px)] h-[44px] rounded-[8px] p-[8px] mx-[12px] mt-[12px] transition-all duration-300 ease-in-out">
+        <div className="flex items-center justify-between bg-[#F7F9FB] dark:bg-black opacity-100 w-[calc(100%-24px)] h-[44px] rounded-[8px] p-[8px] mx-[12px] mt-[12px] transition-all duration-300 ease-in-out">
           <ActionsBar />
           <SearchBar />
         </div>
 
         {/* Order Table Container */}
-        <div className="flex-1 overflow-auto mx-[12px] mb-[12px] transition-all duration-300 ease-in-out min-h-[480px]">
+        <div className="overflow-auto mx-[12px] mb-[12px] transition-all duration-300 ease-in-out min-h-[480px]">
           <OrderTable
             orders={orders}
             checkedItems={checkedItems}
@@ -231,8 +492,6 @@ const EcommercePage: React.FC = () => {
             handleItemCheckbox={handleItemCheckbox}
           />
         </div>
-        {/* Pagination */}
-        <Pagination />
       </motion.div>
 
     </div>

@@ -17,7 +17,7 @@ const TopSellingProducts: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.4 }}
-      className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg w-[662px] h-[336px] min-w-[662px] border border-gray-100 dark:border-gray-700"
+      className="bg-[#F7F9FB] dark:bg-[#18181b] p-6 rounded-2xl shadow-lg w-[662px] h-[336px] min-w-[662px] border border-gray-100 dark:border-gray-700"
     >
       {/* Component Title */}
       <h1 className="text-[14px] font-semibold leading-[20px] text-gray-800 dark:text-white mb-6">Top Selling Products</h1>

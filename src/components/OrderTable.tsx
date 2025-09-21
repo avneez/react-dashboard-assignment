@@ -1,5 +1,4 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
 import { MoreHorizontal } from "lucide-react";
 import { CalendarIcon } from "./Icons";
 import type { Order } from "../pages/EcommercePage";
@@ -12,6 +11,42 @@ interface OrderTableProps {
   handleItemCheckbox: (orderId: string) => void;
 }
 
+const Pagination = ({
+  page,
+  setPage,
+}: {
+  page: number;
+  setPage: (page: number) => void;
+}) => {
+  return (
+    <div className="flex items-center justify-end mt-4">
+      <div className="flex items-center gap-2 w-[244px] h-[28px]">
+        <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors w-7 h-7 flex items-center justify-center">
+          <span className="text-gray-500 dark:text-gray-400 text-sm">‹</span>
+        </button>
+
+        {[1, 2, 3, 4, 5].map((pageNo) => (
+          <button
+            key={pageNo}
+            onClick={() => setPage(pageNo)}
+            className={`w-7 h-7 rounded transition-colors flex items-center justify-center text-[14px] ${
+              pageNo === page
+                ? "bg-[#1C1C1C0D]"
+                : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            }`}
+          >
+            {pageNo}
+          </button>
+        ))}
+
+        <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors w-7 h-7 flex items-center justify-center">
+          <span className="text-gray-500 dark:text-gray-400 text-sm">›</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const CustomCheckbox: React.FC<{
   checked?: boolean;
   onChange?: () => void;
@@ -22,7 +57,7 @@ const CustomCheckbox: React.FC<{
       className={`w-[14px] h-[14px] rounded border cursor-pointer flex items-center justify-center transition-all duration-200 ${
         checked
           ? "bg-black border-black"
-          : "bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600"
+          : "bg-gray-100 border-gray-300 dark:bg-gray-800 dark:border-gray-600"
       }`}
     >
       {checked && (
@@ -70,6 +105,7 @@ const OrderTable: React.FC<OrderTableProps> = ({
   handleMasterCheckbox,
   handleItemCheckbox,
 }) => {
+  const [page, setPage] = useState(1);
   return (
     <>
       {/* Table */}
@@ -107,12 +143,9 @@ const OrderTable: React.FC<OrderTableProps> = ({
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, index) => (
-              <motion.tr
+            {orders.slice((page - 1) * 10, page * 10).map((order) => (
+              <tr
                 key={order.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
                 className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group"
               >
                 <td className="py-1 px-4">
@@ -174,7 +207,7 @@ const OrderTable: React.FC<OrderTableProps> = ({
 
                 <td className="py-1 px-4">
                   <div className="flex items-center gap-2">
-                    <CalendarIcon />
+                    <CalendarIcon className="text-gray-700 dark:text-white" />
                     <span className="font-inter font-normal text-[12px] leading-[18px] tracking-[0%] text-gray-700 dark:text-gray-300">
                       {order.date}
                     </span>
@@ -199,15 +232,16 @@ const OrderTable: React.FC<OrderTableProps> = ({
                 </td>
 
                 <td className="py-1 px-4">
-                  <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors opacity-0 group-hover:opacity-100">
+                  <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors opacity-0 group-hover:opacity-100">
                     <MoreHorizontal className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                   </button>
                 </td>
-              </motion.tr>
+              </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <Pagination page={page} setPage={setPage} />
     </>
   );
 };

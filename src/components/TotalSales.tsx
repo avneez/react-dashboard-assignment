@@ -40,7 +40,7 @@ const TotalSales: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4, duration: 0.4 }}
-      className="bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 font-inter overflow-hidden"
+      className="bg-[#F7F9FB] dark:bg-[#18181b] shadow-sm border border-gray-100 dark:border-gray-700 font-inter overflow-hidden"
       style={{
         width: '202px',
         height: '344px',
@@ -70,9 +70,10 @@ const TotalSales: React.FC = () => {
               cy="50%"
               startAngle={-90}
               endAngle={270}
-              innerRadius={25}
+              innerRadius={35}
               outerRadius={50}
-              paddingAngle={3}
+              paddingAngle={-20}
+              cornerRadius={30}
               dataKey="value"
             >
               {salesData.map((entry, index) => (

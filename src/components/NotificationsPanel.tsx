@@ -89,7 +89,7 @@ const NotificationsPanel: React.FC<NotificationsPanelProps> = () => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
       transition={{ duration: 0.4 }}
-      className="hidden xl:flex xl:flex-col border-l border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 font-inter"
+      className="hidden xl:flex xl:flex-col border-l border-gray-300 dark:border-gray-700 bg-white dark:bg-black font-inter"
       style={{
         width: "280px",
         height: "100vh",
