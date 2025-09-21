@@ -21,58 +21,72 @@ const MetricCard: React.FC<MetricCardProps> = ({
 }) => {
   // For cards with custom background colors (Customers and Growth), keep text black in dark mode
   const hasCustomBg = !!bgColor;
+  const isOrdersOrRevenue = title === 'Orders' || title === 'Revenue';
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.4 }}
-      className="bg-white dark:bg-[#18181b] rounded-2xl p-6 min-w-[200px] w-full h-fit flex flex-col gap-2 group hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 font-inter"
+      className={`rounded-2xl p-6 min-w-[200px] w-full h-fit flex flex-col gap-2 group hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 font-inter ${
+        isOrdersOrRevenue
+          ? 'bg-[#F7F9FB] dark:bg-[#18181b]'
+          : 'bg-white dark:bg-gray-800'
+      }`}
       style={{
-      minWidth: '200px',
-      backgroundColor: bgColor
+        minWidth: '200px',
+        ...(bgColor && !isOrdersOrRevenue ? { backgroundColor: bgColor } : {})
       }}
     >
       <div className="flex flex-col">
-      <p className={`text-sm font-medium mb-2 ${
-        hasCustomBg
-        ? 'text-gray-600'
-        : 'text-gray-600 dark:text-gray-400'
-      }`}>
-        {title}
-      </p>
-      <div className="flex items-center justify-between gap-4">
-        <p className={`text-2xl font-bold ${
-        hasCustomBg
-        ? 'text-gray-900'
-        : 'text-gray-900 dark:text-white'
-      }`}>
-        {value}
-      </p>
-      <div className="flex items-center gap-1">
-        <span className={`text-sm font-medium ${
-        hasCustomBg
-          ? 'text-gray-800'
-          : 'text-gray-800 dark:text-gray-300'
+        <p className={`text-sm font-medium mb-2 ${
+          hasCustomBg
+            ? 'text-gray-600'
+            : isOrdersOrRevenue
+            ? 'text-gray-600 dark:text-white'
+            : 'text-gray-600 dark:text-gray-400'
         }`}>
-        {change}
-        </span>
-        {isPositive ? (
-        <TrendingUp className={`w-4 h-4 ${
-          hasCustomBg
-          ? 'text-gray-800'
-          : 'text-gray-800 dark:text-gray-300'
-        }`} />
-        ) : (
-        <TrendingDown className={`w-4 h-4 ${
-          hasCustomBg
-          ? 'text-gray-800'
-          : 'text-gray-800 dark:text-gray-300'
-        }`} />
-        )}
-      </div>
-      </div>
-
+          {title}
+        </p>
+        <div className="flex items-center justify-between gap-4">
+          <p className={`text-2xl font-bold ${
+            hasCustomBg
+              ? 'text-gray-900'
+              : isOrdersOrRevenue
+              ? 'text-gray-900 dark:text-white'
+              : 'text-gray-900 dark:text-white'
+          }`}>
+            {value}
+          </p>
+          <div className="flex items-center gap-1">
+            <span className={`text-sm font-medium ${
+              hasCustomBg
+                ? 'text-gray-800'
+                : isOrdersOrRevenue
+                ? 'text-gray-800 dark:text-white'
+                : 'text-gray-800 dark:text-gray-300'
+            }`}>
+              {change}
+            </span>
+            {isPositive ? (
+              <TrendingUp className={`w-4 h-4 ${
+                hasCustomBg
+                  ? 'text-gray-800'
+                  : isOrdersOrRevenue
+                  ? 'text-gray-800 dark:text-white'
+                  : 'text-gray-800 dark:text-gray-300'
+              }`} />
+            ) : (
+              <TrendingDown className={`w-4 h-4 ${
+                hasCustomBg
+                  ? 'text-gray-800'
+                  : isOrdersOrRevenue
+                  ? 'text-gray-800 dark:text-white'
+                  : 'text-gray-800 dark:text-gray-300'
+              }`} />
+            )}
+          </div>
+        </div>
       </div>
     </motion.div>
   );
@@ -92,14 +106,12 @@ const MetricCards: React.FC = () => {
       value: '1,219',
       change: '-0.03%',
       isPositive: false,
-      bgColor: "#F7F9FB"
     },
     {
       title: 'Revenue',
       value: '$695',
       change: '+15.03%',
       isPositive: true,
-      bgColor: "#F7F9FB"
     },
     {
       title: 'Growth',
