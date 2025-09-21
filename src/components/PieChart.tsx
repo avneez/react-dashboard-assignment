@@ -1,18 +1,5 @@
 import React, { useState } from "react";
-
-type PieSlice = {
-  name: string;
-  value: number;
-  color: string;
-};
-
-
-interface CustomPieChartProps {
-  innerRadius?: number;
-  outerRadius?: number;
-  gapAngle?: number; // Gap between slices in degrees
-  data: PieSlice[];
-}
+import type { CustomPieChartProps } from '../interfaces/types';
 
 const CustomPieChart: React.FC<CustomPieChartProps> = ({
   innerRadius = 35,

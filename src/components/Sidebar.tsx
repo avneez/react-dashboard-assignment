@@ -4,11 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import SidebarFavourites from './SidebarFavourites';
 import SidebarDashboards from './SidebarDashboards';
 import SidebarPages from './SidebarPages';
-
-interface SidebarProps {
-  isOpen: boolean;
-  onToggle: () => void;
-}
+import type { SidebarProps } from '../interfaces/types';
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   const navigate = useNavigate();

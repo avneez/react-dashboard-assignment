@@ -75,7 +75,7 @@ const RevenueChart: React.FC = () => {
         <h2 className="text-[14px] font-semibold leading-[20px] text-gray-800 dark:text-white">Revenue</h2>
         <div className="h-4 w-px bg-gray-300 mx-2"></div>
         <div className="flex items-center text-gray-600 dark:text-gray-400">
-          <span className="w-[6px] h-[6px] bg-black rounded-full inline-block m-[5px]"></span>
+          <span className="w-[6px] h-[6px] bg-black dark:bg-[#C6C7F8] rounded-full inline-block m-[5px]"></span>
           <span className="text-[12px] font-medium">Current Week</span>
           <span className="text-[12px] font-semibold text-gray-800 dark:text-white ml-2">$58,211</span>
         </div>

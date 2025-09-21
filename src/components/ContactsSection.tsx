@@ -1,14 +1,5 @@
 import React from "react";
-
-interface Contact {
-  id: number;
-  name: string;
-  avatar: string;
-}
-
-interface ContactsSectionProps {
-  contacts: Contact[];
-}
+import type { ContactsSectionProps } from '../interfaces/types';
 
 const ContactsSection: React.FC<ContactsSectionProps> = ({ contacts }) => {
   return (

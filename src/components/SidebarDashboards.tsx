@@ -3,25 +3,7 @@ import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
 import { useLocation } from 'react-router-dom';
 import { CaretRightIcon, DefaultIcon, EcommerceIcon, ProjectIcon, OnlineCoursesIcon } from './Icons';
-
-interface SubItem {
-  label: string;
-  path: string;
-}
-
-interface MenuItem {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  active: boolean;
-  path: string;
-  hasSubItems?: boolean;
-  subItems?: SubItem[];
-}
-
-interface SidebarDashboardsProps {
-  isOpen: boolean;
-  onNavigate: (path: string) => void;
-}
+import type { MenuItem, SidebarDashboardsProps } from '../interfaces/types';
 
 const SidebarDashboards: React.FC<SidebarDashboardsProps> = ({ isOpen, onNavigate }) => {
   const location = useLocation();

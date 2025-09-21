@@ -2,13 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { BellIcon, MacSearchIcon, NotificationsPanelIcon, SearchIcon, SidebarOpenIcon, StarIcon, SunIcon, SunIconDark, TimeIcon } from './Icons';
 import { useTheme } from '../contexts/ThemeContext';
-
-interface HeaderProps {
-  isSidebarOpen: boolean;
-  isNotificationsOpen: boolean;
-  onToggleSidebar: () => void;
-  onToggleNotifications: () => void;
-}
+import type { HeaderProps } from '../interfaces/types';
 
 const Header: React.FC<HeaderProps> = ({
   isSidebarOpen,

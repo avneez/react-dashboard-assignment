@@ -7,19 +7,7 @@ import {
   SearchIcon,
 } from "../components/Icons";
 import OrderTable from "../components/OrderTable";
-
-export interface Order {
-  id: string;
-  user: {
-    name: string;
-    avatar: string;
-  };
-  project: string;
-  address: string;
-  date: string;
-  status: "In Progress" | "Complete" | "Pending" | "Approved" | "Rejected";
-  orderId: string;
-}
+import type { Order } from "../interfaces/types";
 
 const orders: Order[] = [
   {
@@ -408,13 +396,13 @@ const ActionsBar = () => {
   return (
     <div className="flex items-center flex-1 h-[28px] gap-[8px] rounded-[8px] max-w-[900px]">
       <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded transition-colors">
-        <PlusIcon />
+        <PlusIcon className="text-gray-700 dark:text-white" />
       </button>
       <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded transition-colors">
-        <FilterIcon />
+        <FilterIcon className="text-gray-700 dark:text-white" />
       </button>
       <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded transition-colors">
-        <SortIcon />
+        <SortIcon className="text-gray-700 dark:text-white" />
       </button>
     </div>
   );

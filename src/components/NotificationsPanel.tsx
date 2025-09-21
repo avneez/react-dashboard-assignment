@@ -4,10 +4,7 @@ import NotificationsSection from "./NotificationsSection";
 import ActivitiesSection from "./ActivitiesSection";
 import ContactsSection from "./ContactsSection";
 import { BugIcon, NewUserIcon, SubscribedIcon } from "./Icons";
-
-interface NotificationsPanelProps {
-  onClose?: () => void;
-}
+import type { NotificationsPanelProps } from '../interfaces/types';
 
 const NotificationsPanel: React.FC<NotificationsPanelProps> = () => {
   const notifications = [

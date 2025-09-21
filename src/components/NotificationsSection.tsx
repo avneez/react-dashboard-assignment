@@ -1,16 +1,5 @@
 import React from "react";
-
-interface Notification {
-  id: number;
-  type: string;
-  message: string;
-  time: string;
-  avatar: React.ReactNode;
-}
-
-interface NotificationsSectionProps {
-  notifications: Notification[];
-}
+import type { NotificationsSectionProps } from '../interfaces/types';
 
 const NotificationsSection: React.FC<NotificationsSectionProps> = ({
   notifications,

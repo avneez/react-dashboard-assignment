@@ -1,15 +1,5 @@
 import React from "react";
-
-interface Activity {
-  id: number;
-  message: string;
-  time: string;
-  avatar: string;
-}
-
-interface ActivitiesSectionProps {
-  activities: Activity[];
-}
+import type { ActivitiesSectionProps } from '../interfaces/types';
 
 const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({
   activities,

@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
-
-interface LocationData {
-  id: number;
-  city: string;
-  country: string;
-  revenue: number;
-  coordinates: {
-    lng: number; // longitude
-    lat: number; // latitude
-  };
-}
+import type { LocationData } from '../interfaces/types';
 
 const RevenueByLocation: React.FC = () => {
   const [locationData] = useState<LocationData[]>([
@@ -169,7 +159,7 @@ const MapWithMarkers: React.FC = () => {
             <Geography
               key={geo.rsmKey}
               geography={geo}
-              fill="#A8C5DA" 
+              fill="#A8C5DA"
               stroke="#A8C5DA"
               strokeWidth={0.5}
             />
@@ -183,7 +173,7 @@ const MapWithMarkers: React.FC = () => {
             r={12}
             fill="#000000"
             stroke="#FFFFFF"
-            strokeWidth={4} 
+            strokeWidth={4}
           />
         </Marker>
       ))}

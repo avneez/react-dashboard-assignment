@@ -2,25 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { clsx } from "clsx";
 import { GrayDotBoldIcon } from "./Icons";
-
-interface SubItem {
-  label: string;
-  path: string;
-}
-
-interface MenuItem {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  active: boolean;
-  path: string;
-  hasSubItems?: boolean;
-  subItems?: SubItem[];
-}
-
-interface SidebarFavouritesProps {
-  isOpen: boolean;
-  onNavigate: (path: string) => void;
-}
+import type { MenuItem, SidebarFavouritesProps } from '../interfaces/types';
 
 const SidebarFavourites: React.FC<SidebarFavouritesProps> = ({
   isOpen,

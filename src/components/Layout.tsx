@@ -4,10 +4,7 @@ import { clsx } from 'clsx';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import NotificationsPanel from './NotificationsPanel';
-
-interface LayoutProps {
-  children: React.ReactNode;
-}
+import type { LayoutProps } from '../interfaces/types';
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

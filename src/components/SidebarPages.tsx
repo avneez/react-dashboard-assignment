@@ -2,25 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
 import { CaretDownIcon, CaretRightIcon, UserProfileIcon, AccountIcon, CorporateIcon, BlogIcon, SocialIcon } from './Icons';
-
-interface SubItem {
-  label: string;
-  path: string;
-}
-
-interface MenuItem {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  active: boolean;
-  path: string;
-  hasSubItems?: boolean;
-  subItems?: SubItem[];
-}
-
-interface SidebarPagesProps {
-  isOpen: boolean;
-  onNavigate: (path: string) => void;
-}
+import type { SubItem, MenuItem, SidebarPagesProps } from '../interfaces/types';
 
 const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
   const [isUserProfileExpanded, setIsUserProfileExpanded] = useState(false);

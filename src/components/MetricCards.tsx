@@ -1,15 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown } from 'lucide-react';
-
-interface MetricCardProps {
-  title: string;
-  value: string;
-  change: string;
-  isPositive: boolean;
-  delay?: number;
-  bgColor?: string;
-}
+import type { MetricCardProps } from '../interfaces/types';
 
 const MetricCard: React.FC<MetricCardProps> = ({
   title,
