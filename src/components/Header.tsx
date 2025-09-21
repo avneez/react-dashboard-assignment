@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { BellIcon, MacSearchIcon, SearchIcon, SidebarOpenIcon, StarIcon, SunIcon, SunIconDark, TimeIcon } from './Icons';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -16,39 +17,94 @@ const Header: React.FC<HeaderProps> = ({
   onToggleNotifications
 }) => {
   const { isDarkMode, toggleDarkMode } = useTheme();
+  const location = useLocation();
+
+  // Determine current dashboard based on route
+  const getCurrentDashboard = () => {
+    switch (location.pathname) {
+      case '/':
+        return 'Default';
+      case '/ecommerce':
+        return 'eCommerce';
+      case '/projects':
+        return 'Projects';
+      case '/courses':
+        return 'Online Courses';
+      default:
+        return 'Default';
+    }
+  };
 
   return (
     <header
-      className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
+      className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 fixed top-0 z-30 transition-all duration-300"
       style={{
         width: isNotificationsOpen
           ? (isSidebarOpen ? 'calc(100vw - 212px - 280px)' : 'calc(100vw - 64px - 280px)')
           : (isSidebarOpen ? 'calc(100vw - 212px)' : 'calc(100vw - 64px)'),
         height: '68px',
-        justifyContent: 'space-between',
         left: isSidebarOpen ? '212px' : '64px',
-        borderBottomWidth: '1px',
         paddingTop: '20px',
         paddingRight: '28px',
         paddingBottom: '20px',
-        paddingLeft: '28px',
-        position: 'fixed',
-        top: '0px',
-        zIndex: 30,
-        transition: 'all 0.3s ease'
+        paddingLeft: '28px'
       }}
     >
       <div className="flex items-center justify-between h-full">
-        {/* Left side - Toggle and Search */}
-        <div className="flex items-center gap-4">
-          <button
-            onClick={onToggleSidebar}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+        {/* Left side - Grouped Icons and Breadcrumb */}
+        <div className="flex items-center" style={{ gap: '8px' }}>
+          {/* Grouped Sidebar and Star Icons */}
+          <div className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+            <button
+              onClick={onToggleSidebar}
+              className="hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors"
+            >
+              <SidebarOpenIcon />
+            </button>
+            <StarIcon />
+          </div>
+
+          {/* Breadcrumb Container */}
+          <div
+            className="flex items-center bg-gray-50 dark:bg-gray-700 rounded-lg"
+            style={{
+              width: '184px',
+              height: '28px',
+              gap: '8px',
+              opacity: 1,
+              borderRadius: '8px',
+              padding: '0 12px'
+            }}
           >
-            <SidebarOpenIcon />
-          </button>
-          <StarIcon />
-          <p className="text-gray-900 dark:text-white">Dashboards / Default</p>
+            <span
+              className="font-inter text-gray-600 dark:text-gray-300"
+              style={{
+                fontWeight: 400,
+                fontStyle: 'normal',
+                fontSize: '14px',
+                lineHeight: '20px',
+                letterSpacing: '0%',
+                textAlign: 'center',
+                verticalAlign: 'middle'
+              }}
+            >
+              Dashboards /
+            </span>
+            <span
+              className="font-inter text-gray-900 dark:text-white"
+              style={{
+                fontWeight: 400,
+                fontStyle: 'normal',
+                fontSize: '14px',
+                lineHeight: '20px',
+                letterSpacing: '0%',
+                textAlign: 'center',
+                verticalAlign: 'middle'
+              }}
+            >
+              {getCurrentDashboard()}
+            </span>
+          </div>
         </div>
 
         {/* Right side - Actions */}
