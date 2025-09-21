@@ -27,7 +27,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.4 }}
-      className="bg-white dark:bg-gray-800 rounded-2xl p-6 min-w-[200px] w-full h-fit flex flex-col gap-2 group hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+      className="bg-white dark:bg-gray-800 rounded-2xl p-6 min-w-[200px] w-full h-fit flex flex-col gap-2 group hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 font-inter"
       style={{
         minWidth: '200px',
         backgroundColor: bgColor
@@ -41,7 +41,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
         }`}>
           {title}
         </p>
-        <p className={`text-2xl font-bold mb-2 ${
+        <div className="flex items-center gap-3">
+          <p className={`text-2xl font-bold ${
           hasCustomBg
             ? 'text-gray-900'
             : 'text-gray-900 dark:text-white'
@@ -70,6 +71,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
             }`} />
           )}
         </div>
+        </div>
+
       </div>
     </motion.div>
   );
@@ -107,7 +110,7 @@ const MetricCards: React.FC = () => {
 
   return (
     <div
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 font-inter"
       style={{
         width: '432px',
         height: '252px',

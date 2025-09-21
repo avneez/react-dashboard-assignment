@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Bell, Sun, Menu, X, Grid3X3 } from 'lucide-react';
 import { clsx } from 'clsx';
 import Sidebar from './Sidebar';
 import NotificationsPanel from './NotificationsPanel';
+import { BellIcon, MacSearchIcon, SearchIcon, SidebarOpenIcon, StarIcon, SunIcon, SunIconDark, TimeIcon } from './Icons';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,23 +12,20 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const { isDarkMode, toggleDarkMode } = useTheme();
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
   const toggleNotifications = () => setIsNotificationsOpen(!isNotificationsOpen);
 
   return (
-    <div className={clsx('min-h-screen bg-gray-50 transition-colors relative', {
-      'dark bg-gray-900': isDarkMode
-    })}>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors relative font-inter">
       {/* Sidebar */}
       <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
 
       {/* Main Content */}
       <div className={clsx('transition-all duration-300 relative', {
-        'ml-64': isSidebarOpen,
+        'ml-[212px]': isSidebarOpen,
         'ml-16': !isSidebarOpen
       })}>
         {/* Header */}
@@ -35,11 +33,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
           style={{
             width: isNotificationsOpen
-              ? (isSidebarOpen ? 'calc(100vw - 256px - 280px)' : 'calc(100vw - 64px - 280px)')
-              : (isSidebarOpen ? 'calc(100vw - 256px)' : 'calc(100vw - 64px)'),
+              ? (isSidebarOpen ? 'calc(100vw - 212px - 280px)' : 'calc(100vw - 64px - 280px)')
+              : (isSidebarOpen ? 'calc(100vw - 212px)' : 'calc(100vw - 64px)'),
             height: '68px',
             justifyContent: 'space-between',
-            left: isSidebarOpen ? '256px' : '64px',
+            left: isSidebarOpen ? '212px' : '64px',
             borderBottomWidth: '1px',
             paddingTop: '20px',
             paddingRight: '28px',
@@ -58,54 +56,46 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 onClick={toggleSidebar}
                 className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               >
-                {isSidebarOpen ? (
-                  <X className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                ) : (
-                  <Menu className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                )}
+                <SidebarOpenIcon />
               </button>
-
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="pl-10 pr-4 py-2 w-80 bg-gray-100 dark:bg-gray-700 border-0 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                />
-              </div>
+              <StarIcon />
+              <p className="text-gray-900 dark:text-white">Dashboards / Default</p>
             </div>
 
             {/* Right side - Actions */}
             <div className="flex items-center gap-3">
+               <div className="flex items-center w-[160px] pl-2 pr-2 py-2 w-80 bg-gray-100 dark:bg-gray-700 border-0 rounded-lg text-sm gap-1">
+                <SearchIcon />
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="text-gray-900 dark:text-gray-100 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none min-w-0 flex-1"
+                />
+                <MacSearchIcon />
+              </div>
               <button
                 onClick={toggleDarkMode}
                 className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
                 title={isDarkMode ? 'Light mode' : 'Dark mode'}
               >
                 {isDarkMode ? (
-                  <Sun className="w-5 h-5 text-white" />
+                  <SunIconDark />
                 ) : (
-                  <Sun className="w-5 h-5 text-gray-600" />
+                  <SunIcon />
                 )}
               </button>
 
-              <div className="relative">
-                <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                  <Bell className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                </button>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
-              </div>
+              <TimeIcon />
+
+              <BellIcon />
 
               <button
                 onClick={toggleNotifications}
                 className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               >
-                <Grid3X3 className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                <SidebarOpenIcon/>
               </button>
 
-              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-medium">U</span>
-              </div>
             </div>
           </div>
         </header>

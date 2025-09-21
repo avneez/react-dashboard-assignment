@@ -12,6 +12,7 @@ import {
   ChevronDown,
   Heart
 } from 'lucide-react';
+import { AccountIcon, BlogIcon, CorporateIcon, DefaultIcon, EcommerceIcon, ProjectIcon, SocialIcon, UserProfileIcon } from './Icons';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -26,27 +27,27 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
     {
       category: 'Favourites',
       items: [
-        { icon: Home, label: 'Overview', active: false, path: '/' },
+        { icon: DefaultIcon, label: 'Overview', active: false, path: '/' },
         { icon: FolderOpen, label: 'Projects', active: false, path: '/projects' }
       ]
     },
     {
       category: 'Dashboards',
       items: [
-        { icon: BarChart3, label: 'Default', active: location.pathname === '/', path: '/' },
-        { icon: ShoppingCart, label: 'eCommerce', active: location.pathname === '/ecommerce', path: '/ecommerce' },
-        { icon: FolderOpen, label: 'Projects', active: false, path: '/projects' },
+        { icon: DefaultIcon, label: 'Default', active: location.pathname === '/', path: '/' },
+        { icon: EcommerceIcon, label: 'eCommerce', active: location.pathname === '/ecommerce', path: '/ecommerce' },
+        { icon: ProjectIcon, label: 'Projects', active: false, path: '/projects' },
         { icon: Users, label: 'Online Courses', active: false, path: '/courses' }
       ]
     },
     {
       category: 'Pages',
       items: [
-        { icon: Users, label: 'User Profile', active: false, path: '/profile' },
-        { icon: FolderOpen, label: 'Account', active: false, path: '/account' },
-        { icon: Star, label: 'Corporate', active: false, path: '/corporate' },
-        { icon: FolderOpen, label: 'Blog', active: false, path: '/blog' },
-        { icon: Heart, label: 'Social', active: false, path: '/social' }
+        { icon: UserProfileIcon, label: 'User Profile', active: false, path: '/profile' },
+        { icon: AccountIcon, label: 'Account', active: false, path: '/account' },
+        { icon: CorporateIcon, label: 'Corporate', active: false, path: '/corporate' },
+        { icon: BlogIcon, label: 'Blog', active: false, path: '/blog' },
+        { icon: SocialIcon, label: 'Social', active: false, path: '/social' }
       ]
     }
   ];
@@ -57,20 +58,26 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
 
   return (
     <motion.aside
-      animate={{ width: isOpen ? 256 : 64 }}
-      className="fixed left-0 top-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-50"
+      animate={{ width: isOpen ? 212 : 64 }}
+      className="fixed left-0 top-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-50 font-inter"
     >
       <div className="p-6">
         {/* Logo */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">B</span>
-          </div>
+          <img
+            src='/ByeWindAvatar.png'
+            alt="ByeWind Logo"
+            className="w-8 h-8 rounded-lg object-cover"
+          />
           {isOpen && (
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="font-semibold text-lg text-gray-900 dark:text-white"
+              className="font-inter font-normal text-[14px] leading-5 text-gray-900 dark:text-white"
+              style={{
+              fontStyle: 'normal',
+              letterSpacing: '0%',
+              }}
             >
               ByeWind
             </motion.span>
@@ -114,7 +121,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                         </motion.span>
                       )}
                       {isOpen && item.label === 'Projects' && (
-                        <ChevronDown className="w-4 h-4 ml-auto text-gray-400" />
+                        <ChevronDown className="w-4 h-4 ml-auto text-gray-400 dark:text-gray-500" />
                       )}
                     </button>
                   </li>

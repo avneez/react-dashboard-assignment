@@ -1,8 +1,14 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Plus, Filter, Search, MoreHorizontal } from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  PlusIcon,
+  SortIcon,
+  FilterIcon,
+  SearchIcon,
+} from "../components/Icons";
+import OrderTable from "../components/OrderTable";
 
-interface Order {
+export interface Order {
   id: string;
   user: {
     name: string;
@@ -11,241 +17,224 @@ interface Order {
   project: string;
   address: string;
   date: string;
-  status: 'In Progress' | 'Complete' | 'Pending' | 'Approved' | 'Rejected';
+  status: "In Progress" | "Complete" | "Pending" | "Approved" | "Rejected";
+  orderId: string;
 }
 
 const orders: Order[] = [
   {
-    id: '#CM9801',
-    user: { name: 'Natali Craig', avatar: '/api/placeholder/32/32' },
-    project: 'Landing Page',
-    address: 'Meadow Lane Oakland',
-    date: 'Just now',
-    status: 'In Progress'
+    id: "1",
+    user: { name: "Natali Craig", avatar: "/Female15.png" },
+    project: "Landing Page",
+    address: "Meadow Lane Oakland",
+    date: "Just now",
+    status: "In Progress",
+    orderId: "#CM9801",
   },
   {
-    id: '#CM9802',
-    user: { name: 'Kate Morrison', avatar: '/api/placeholder/32/32' },
-    project: 'CRM Admin pages',
-    address: 'Larry San Francisco',
-    date: 'A minute ago',
-    status: 'Complete'
+    id: "2",
+    user: { name: "Kate Morrison", avatar: "/Female09.png" },
+    project: "CRM Admin pages",
+    address: "Larry San Francisco",
+    date: "A minute ago",
+    status: "Complete",
+    orderId: "#CM9802",
   },
   {
-    id: '#CM9803',
-    user: { name: 'Drew Cano', avatar: '/api/placeholder/32/32' },
-    project: 'Client Project',
-    address: 'Bagwell Avenue Ocala',
-    date: '1 hour ago',
-    status: 'Pending'
+    id: "3",
+    user: { name: "Drew Cano", avatar: "/Male08.png" },
+    project: "Client Project",
+    address: "Bagwell Avenue Ocala",
+    date: "1 hour ago",
+    status: "Pending",
+    orderId: "#CM9803",
   },
   {
-    id: '#CM9804',
-    user: { name: 'Orlando Diggs', avatar: '/api/placeholder/32/32' },
-    project: 'Admin Dashboard',
-    address: 'Washburn Baton Rouge',
-    date: 'Yesterday',
-    status: 'Approved'
+    id: "4",
+    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
+    project: "Admin Dashboard",
+    address: "Washburn Baton Rouge",
+    date: "Yesterday",
+    status: "Approved",
+    orderId: "#CM9804",
   },
   {
-    id: '#CM9805',
-    user: { name: 'Andi Lane', avatar: '/api/placeholder/32/32' },
-    project: 'App Landing Page',
-    address: 'Nest Lane Olivette',
-    date: 'Feb 2, 2023',
-    status: 'Rejected'
-  }
+    id: "5",
+    user: { name: "Andi Lane", avatar: "/Female08.png" },
+    project: "App Landing Page",
+    address: "Nest Lane Olivette",
+    date: "Feb 2, 2023",
+    status: "Rejected",
+    orderId: "#CM9805",
+  },
+  {
+    id: "6",
+    user: { name: "Natali Craig", avatar: "/Female15.png" },
+    project: "Landing Page",
+    address: "Meadow Lane Oakland",
+    date: "Just now",
+    status: "In Progress",
+    orderId: "#CM9801",
+  },
+  {
+    id: "7",
+    user: { name: "Kate Morrison", avatar: "/Female09.png" },
+    project: "CRM Admin pages",
+    address: "Larry San Francisco",
+    date: "A minute ago",
+    status: "Complete",
+    orderId: "#CM9802",
+  },
+  {
+    id: "8",
+    user: { name: "Drew Cano", avatar: "/Male08.png" },
+    project: "Client Project",
+    address: "Bagwell Avenue Ocala",
+    date: "1 hour ago",
+    status: "Pending",
+    orderId: "#CM9803",
+  },
+  {
+    id: "9",
+    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
+    project: "Admin Dashboard",
+    address: "Washburn Baton Rouge",
+    date: "Yesterday",
+    status: "Approved",
+    orderId: "#CM9804",
+  },
+  {
+    id: "10",
+    user: { name: "Andi Lane", avatar: "/Female08.png" },
+    project: "App Landing Page",
+    address: "Nest Lane Olivette",
+    date: "Feb 2, 2023",
+    status: "Rejected",
+    orderId: "#CM9805",
+  },
 ];
 
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case 'In Progress':
-      return 'bg-blue-100 text-blue-800';
-    case 'Complete':
-      return 'bg-green-100 text-green-800';
-    case 'Pending':
-      return 'bg-yellow-100 text-yellow-800';
-    case 'Approved':
-      return 'bg-green-100 text-green-800';
-    case 'Rejected':
-      return 'bg-red-100 text-red-800';
-    default:
-      return 'bg-gray-100 text-gray-800';
-  }
+const ActionsBar = () => {
+  return (
+    <div className="flex items-center flex-1 h-[28px] gap-[8px] rounded-[8px] max-w-[900px]">
+      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+        <PlusIcon />
+      </button>
+      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+        <FilterIcon />
+      </button>
+      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+        <SortIcon />
+      </button>
+    </div>
+  );
+};
+
+const SearchBar = () => {
+  return (
+    <div className="flex items-center bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 w-[160px] h-[28px] gap-[8px] rounded-[8px] pt-[4px] pr-[8px] pb-[4px] pl-[8px] border-[1px]">
+      <SearchIcon />
+      <input
+        type="text"
+        placeholder="Search"
+        className="text-gray-900 dark:text-gray-100 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none min-w-0 flex-1 text-sm"
+      />
+    </div>
+  );
+};
+
+const Pagination = () => {
+  return (
+    <div className="flex items-center justify-end mt-4">
+      <div className="flex items-center gap-2 w-[244px] h-[28px]">
+        <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors w-7 h-7 flex items-center justify-center">
+          <span className="text-gray-500 dark:text-gray-400 text-sm">‹</span>
+        </button>
+
+        {[1, 2, 3, 4, 5].map((page) => (
+          <button
+            key={page}
+            className={`w-7 h-7 rounded transition-colors flex items-center justify-center text-sm ${
+              page === 1
+                ? "bg-blue-600 text-white"
+                : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+
+        <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors w-7 h-7 flex items-center justify-center">
+          <span className="text-gray-500 dark:text-gray-400 text-sm">›</span>
+        </button>
+      </div>
+    </div>
+  );
 };
 
 const EcommercePage: React.FC = () => {
+  const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
+  const [allChecked, setAllChecked] = useState(false);
+
+  const handleMasterCheckbox = () => {
+    if (allChecked) {
+      setCheckedItems(new Set());
+      setAllChecked(false);
+    } else {
+      setCheckedItems(new Set(orders.map((order) => order.id)));
+      setAllChecked(true);
+    }
+  };
+
+  const handleItemCheckbox = (orderId: string) => {
+    const newCheckedItems = new Set(checkedItems);
+    if (newCheckedItems.has(orderId)) {
+      newCheckedItems.delete(orderId);
+    } else {
+      newCheckedItems.add(orderId);
+    }
+    setCheckedItems(newCheckedItems);
+    setAllChecked(newCheckedItems.size === orders.length);
+  };
+
   return (
-    <div className="space-y-6">
-      {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+    <div className="w-full transition-all duration-300 ease-in-out">
+      <div className="space-y-6">
+        {/* Page Header */}
+        <div className="w-[83px] h-[28px] top-[96px] left-[240px] rounded-[8px] pt-[4px] pr-[8px] pb-[4px] pl-[8px] flex items-center">
+          <h1 className="font-inter font-semibold text-[14px] leading-[20px] tracking-[0%] text-gray-900 dark:text-white">
             Order List
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
-            Manage and track all orders
-          </p>
         </div>
       </div>
 
-      {/* Order List Card */}
+      {/* Order List Container */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="card p-6"
+        transition={{ duration: 0.4 }}
+        className="bg-white dark:bg-gray-800 w-full max-w-[1172px] min-h-[600px] mt-[16px] flex flex-col gap-[12px] p-0 rounded-lg transition-all duration-300 ease-in-out"
       >
         {/* Table Header Actions */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Order List
-          </h2>
-
-          <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-              <Plus className="w-4 h-4" />
-              Add
-            </button>
-
-            <button className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-              <Filter className="w-4 h-4" />
-              Filter
-            </button>
-
-            <button className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-              <Search className="w-4 h-4" />
-              Search
-            </button>
-          </div>
+        <div className="flex items-center justify-between bg-[#F7F9FB] dark:bg-gray-700 opacity-100 w-[calc(100%-24px)] h-[44px] rounded-[8px] p-[8px] mx-[12px] mt-[12px] transition-all duration-300 ease-in-out">
+          <ActionsBar />
+          <SearchBar />
         </div>
 
-        {/* Search Bar */}
-        <div className="mb-6">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search"
-              className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-700 border-0 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-          </div>
+        {/* Order Table Container */}
+        <div className="flex-1 overflow-auto mx-[12px] mb-[12px] transition-all duration-300 ease-in-out min-h-[480px]">
+          <OrderTable
+            orders={orders}
+            checkedItems={checkedItems}
+            allChecked={allChecked}
+            handleMasterCheckbox={handleMasterCheckbox}
+            handleItemCheckbox={handleItemCheckbox}
+          />
         </div>
-
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-                  Order ID
-                </th>
-                <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-                  User
-                </th>
-                <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-                  Project
-                </th>
-                <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-                  Address
-                </th>
-                <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-                  Date
-                </th>
-                <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-                  Status
-                </th>
-                <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order, index) => (
-                <motion.tr
-                  key={order.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
-                >
-                  <td className="py-4 px-4">
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      {order.id}
-                    </span>
-                  </td>
-
-                  <td className="py-4 px-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-medium">
-                          {order.user.name.split(' ').map(n => n[0]).join('')}
-                        </span>
-                      </div>
-                      <span className="font-medium text-gray-900 dark:text-white">
-                        {order.user.name}
-                      </span>
-                    </div>
-                  </td>
-
-                  <td className="py-4 px-4">
-                    <span className="text-gray-700 dark:text-gray-300">
-                      {order.project}
-                    </span>
-                  </td>
-
-                  <td className="py-4 px-4">
-                    <span className="text-gray-700 dark:text-gray-300">
-                      {order.address}
-                    </span>
-                  </td>
-
-                  <td className="py-4 px-4">
-                    <span className="text-gray-700 dark:text-gray-300">
-                      {order.date}
-                    </span>
-                  </td>
-
-                  <td className="py-4 px-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
-                      {order.status}
-                    </span>
-                  </td>
-
-                  <td className="py-4 px-4">
-                    <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors">
-                      <MoreHorizontal className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                    </button>
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
         {/* Pagination */}
-        <div className="flex items-center justify-center mt-6 gap-2">
-          <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors">
-            <span className="text-gray-500 dark:text-gray-400">‹</span>
-          </button>
-
-          {[1, 2, 3, 4, 5].map((page) => (
-            <button
-              key={page}
-              className={`w-8 h-8 rounded transition-colors ${
-                page === 1
-                  ? 'bg-blue-600 text-white'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-              }`}
-            >
-              {page}
-            </button>
-          ))}
-
-          <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors">
-            <span className="text-gray-500 dark:text-gray-400">›</span>
-          </button>
-        </div>
+        <Pagination />
       </motion.div>
+
     </div>
   );
 };

@@ -25,10 +25,10 @@ const ProjectionsChart: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4, duration: 0.4 }}
-      className="bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 font-inter"
+      className="bg-[#F7F9FB] dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 font-inter"
       style={{
         width: '432px',
-        // height: '252px',
+         height: '252px',
         minWidth: '400px',
         padding: '24px',
         gap: '16px',
@@ -43,17 +43,17 @@ const ProjectionsChart: React.FC = () => {
       </div>
 
       {/* Chart Container */}
-      <div className="h-64">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="h-[252px]">
+        <ResponsiveContainer width={384} height={170}>
           <BarChart
             data={data}
             margin={{
               top: 20,
               right: 30,
-              left: 20,
+              left: -20,
               bottom: 5,
             }}
-            barCategoryGap="32px"
+            barCategoryGap="34px"
             maxBarSize={20}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -66,7 +66,7 @@ const ProjectionsChart: React.FC = () => {
             <YAxis
               domain={[0, 30]}
               ticks={[0, 10, 20, 30]}
-              tickFormatter={(value) => `${value}M`}
+              tickFormatter={(value) => value!==0 ? `${value}M` : `${value}`}
               tick={{ fontSize: 12, fill: '#6B7280', fontFamily: 'Inter' }}
               axisLine={false}
               tickLine={false}

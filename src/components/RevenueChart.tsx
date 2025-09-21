@@ -12,26 +12,23 @@ import {
 
 // The data structure now combines the solid and dotted lines under 'current' again.
 const data = [
-  { name: 'Jan', current: 12, previous: 7 },
-  { name: 'Feb', current: 7, previous: 15 },
-  { name: 'Mar', current: 10, previous: 11 },
-  { name: 'Apr', current: 15, previous: 10 },
-  { name: 'May', current: 18, previous: 9 },
-  { name: 'Jun', current: 20, previous: 22 },
+  { name: 'Jan', current: 15, previous: 10 },
+  { name: 'Feb', current: 10, previous: 18 },
+  { name: 'Mar', current: 12, previous: 16 },
+  { name: 'Apr', current: 18, previous: 12 },
+  { name: 'May', current: 21, previous: 15 },
+  { name: 'Jun', current: 22, previous: 25 },
 ];
 
 const RevenueChart: React.FC = () => {
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="p-2 text-sm bg-white border border-gray-200 rounded-lg shadow-md">
-          <p className="font-bold text-black">
-            {`${payload[0].name}`}
-          </p>
-          <p className="text-gray-700">
+        <div className="p-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-md">
+          <p className="text-gray-700 dark:text-gray-300">
             {`Current Week: $${(payload[0].value * 1000).toLocaleString()}`}
           </p>
-          <p className="text-gray-700">
+          <p className="text-gray-700 dark:text-gray-300">
             {`Previous Week: $${(payload[1].value * 1000).toLocaleString()}`}
           </p>
         </div>
@@ -91,12 +88,14 @@ const RevenueChart: React.FC = () => {
               axisLine={false}
               tickLine={false}
               tick={{ fontSize: 12, fill: '#6B7280', fontFamily: 'Inter' }}
+              padding={{left:15, right:15}}
             />
             <YAxis
               axisLine={false}
               tickLine={false}
-              tickFormatter={(value) => `${value}M`}
               domain={[0, 30]}
+              ticks={[0, 10, 20, 30]}
+              tickFormatter={(value) => value!==0 ? `${value}M` : `${value}`}
               tick={{ fontSize: 12, fill: '#6B7280', fontFamily: 'Inter' }}
             />
             <Tooltip content={<CustomTooltip />} />

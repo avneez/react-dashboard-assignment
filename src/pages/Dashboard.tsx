@@ -14,7 +14,7 @@ const Dashboard: React.FC = () => {
         {/* Page Header */}
         <div className="flex items-center justify-between space-y-6 mb-6">
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+            <h1 className="text-[14px] font-semibold text-gray-900 dark:text-white">
               eCommerce
             </h1>
           </div>
