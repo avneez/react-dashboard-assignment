@@ -82,13 +82,13 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
               {isOpen && (
                 <div className="flex-shrink-0 w-4 h-4 mr-1">
                   {item.hasSubItems ? (
-                    isUserProfileExpanded ? <CaretDownIcon /> : <CaretRightIcon />
+                    isUserProfileExpanded ? <CaretDownIcon className="text-gray-500 dark:text-white" /> : <CaretRightIcon className="text-gray-500 dark:text-white" />
                   ) : (
-                    <CaretRightIcon />
+                    <CaretRightIcon className="text-gray-500 dark:text-white" />
                   )}
                 </div>
               )}
-              <item.icon className={clsx('w-5 h-5 flex-shrink-0', isOpen ? 'ml-3' : '', {
+              <item.icon className={clsx('w-5 h-5 flex-shrink-0', {
                 'text-blue-600 dark:text-blue-400': item.active,
                 'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
               })} />
@@ -96,7 +96,7 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="font-inter font-normal text-[14px] leading-[20px] text-[#1C1C1C] dark:text-white ml-3"
+                  className={`font-inter ${isOpen ? 'ml-1' : ''} font-normal text-[14px] leading-[20px] text-[#1C1C1C] dark:text-white`}
                   style={{
                     fontStyle: 'normal',
                     letterSpacing: '0%'

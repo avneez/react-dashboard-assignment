@@ -40,7 +40,7 @@ const SidebarFavourites: React.FC<SidebarFavouritesProps> = ({
     <div className="pb-3">
       {isOpen && (
         <div className="text-[14px] mb-1 flex">
-          <p className="text-[#1C1C1C66] px-2 py-1">Favourites</p>  <p className="text-[#1C1C1C33] ml-2 px-2 py-1">Recently</p>
+          <p className="text-[#1C1C1C66] dark:text-gray-400 px-2 py-1">Favourites</p>  <p className="text-[#1C1C1C33] dark:text-gray-500 ml-2 px-2 py-1">Recently</p>
         </div>
 
       )}
@@ -64,9 +64,9 @@ const SidebarFavourites: React.FC<SidebarFavouritesProps> = ({
               >
 
                 <item.icon
-                  className={clsx("w-5 h-5 flex-shrink-0", isOpen ? "ml-3" : "", {
+                  className={clsx("w-5 h-5 flex-shrink-0", {
                     "text-blue-600 dark:text-blue-400": item.active,
-                    "text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300":
+                    "text-gray-500 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300":
                       !item.active,
                   })}
                 />
