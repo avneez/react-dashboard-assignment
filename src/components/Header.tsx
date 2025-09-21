@@ -20,6 +20,8 @@ const Header: React.FC<HeaderProps> = ({
         return 'Default';
       case '/ecommerce':
         return 'eCommerce';
+      case '/orders':
+        return 'Order Lists';
       case '/projects':
         return 'Projects';
       case '/courses':
@@ -76,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({
 
         {/* Right side - Actions */}
         <div className="flex flex-shrink-0">
-          <div className={`items-center px-2 py-2 bg-[#1C1C1C0D] dark:bg-gray-700 rounded-[8px] text-[14px] gap-1 ${isNotificationsOpen ? 'hidden lg:flex w-32' : 'flex w-40'}`}>
+          <div className={`items-center px-2 py-2 bg-[#1C1C1C0D] dark:bg-[#18181b] rounded-[8px] text-[14px] gap-1 ${isNotificationsOpen ? 'hidden lg:flex w-32' : 'flex w-40'}`}>
             <SearchIcon className="text-gray-700 dark:text-white flex-shrink-0" />
             <input
               type="text"
