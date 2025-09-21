@@ -20,9 +20,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   return (
     <motion.aside
       animate={{ width: isOpen ? 212 : 64 }}
-      className="fixed left-0 top-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-50 font-inter"
+      className="fixed left-0 top-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-50 font-inter overflow-hidden"
+      style={{ minWidth: '64px' }}
     >
-      <div className="p-6">
+      <div className={isOpen ? "p-6" : "p-3"}>
         {/* Logo */}
         <div className="flex items-center gap-3 mb-8">
           <img

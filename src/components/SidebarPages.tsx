@@ -51,7 +51,7 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
   };
 
   return (
-    <div className={clsx('w-[180px] pb-3', getWrapperHeight())}>
+    <div className={clsx('pb-3', isOpen ? getWrapperHeight() : '')}>
       {isOpen && (
         <h3 className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
           Pages
@@ -63,31 +63,32 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
           <li key={itemIndex}>
             <button
               onClick={() => {
-                if (item.hasSubItems && item.label === 'User Profile') {
+                if (item.hasSubItems && item.label === 'User Profile' && isOpen) {
                   setIsUserProfileExpanded(!isUserProfileExpanded);
-                } else {
+                } else if (!item.hasSubItems) {
                   onNavigate(item.path);
                 }
               }}
               className={clsx(
-                'w-full flex items-center px-3 py-2 rounded-lg transition-colors group',
+                'w-full flex items-center rounded-lg transition-colors group',
+                isOpen ? 'px-3 py-2' : 'px-2 py-2 justify-center',
                 {
                   'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400': item.active,
                   'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700': !item.active
                 }
               )}
             >
-              {/* Always render caret space for consistent alignment */}
-              <div className="flex-shrink-0 w-4 h-4">
-                {isOpen && (
-                  item.hasSubItems ? (
+              {/* Always render caret space for consistent alignment when open */}
+              {isOpen && (
+                <div className="flex-shrink-0 w-4 h-4">
+                  {item.hasSubItems ? (
                     isUserProfileExpanded ? <CaretDownIcon /> : <CaretRightIcon />
                   ) : (
                     <CaretRightIcon />
-                  )
-                )}
-              </div>
-              <item.icon className={clsx('w-5 h-5 flex-shrink-0 ml-3', {
+                  )}
+                </div>
+              )}
+              <item.icon className={clsx('w-5 h-5 flex-shrink-0', isOpen ? 'ml-3' : '', {
                 'text-blue-600 dark:text-blue-400': item.active,
                 'text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
               })} />
