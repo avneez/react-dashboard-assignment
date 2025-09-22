@@ -159,4 +159,4 @@ For the best local testing experience, use:
 ```bash
 npm run test:e2e:local:headed
 ```
-This command (`ENV=local playwright test --headed`) provides visual feedback and is optimized for local development.
+This command refers to `ENV=local playwright test --headed` provides visual feedback and is optimized for local development.
