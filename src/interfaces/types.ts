@@ -109,11 +109,15 @@ export interface Notification {
   type: string;
   message: string;
   time: string;
-  avatar: React.ReactNode;
 }
 
 export interface NotificationsSectionProps {
-  notifications: Notification[];
+  notifications: Array<{
+    id: number;
+    type: string;
+    message: string;
+    time: string;
+  }>;
 }
 
 export interface NotificationsPanelProps {
@@ -173,3 +177,15 @@ export interface CustomPieChartProps {
   gapAngle?: number; // Gap between slices in degrees
   data: PieSlice[];
 }
+
+export type MarkerType = {
+  name: string;
+  coordinates: [number, number]; // [longitude, latitude]
+};
+
+export type Product = {
+  name: string;
+  price: number;
+  quantity: number;
+  amount: number;
+};

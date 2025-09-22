@@ -4,6 +4,7 @@ import { CalendarIcon } from "./Icons";
 import { getStatusColor } from "../utils/helpers";
 import Pagination from "./Pagination";
 import CustomCheckbox from "./CustomCheckbox";
+import { PAGINATION_PAGES } from '../constants';
 import type {
   OrderTableProps,
   OrderTableHeaderProps,
@@ -165,7 +166,6 @@ const OrderTable: React.FC<OrderTableProps> = ({
   handleItemCheckbox,
 }) => {
   const [page, setPage] = useState(1);
-  const paginationPages = Array.from({ length: 5 }, (_, i) => i + 1);
   return (
     <>
       {/* Table */}
@@ -187,7 +187,7 @@ const OrderTable: React.FC<OrderTableProps> = ({
         page={page}
         setPage={setPage}
         totalItems={orders.length}
-        paginationPages={paginationPages}
+        paginationPages={PAGINATION_PAGES}
       />
     </>
   );

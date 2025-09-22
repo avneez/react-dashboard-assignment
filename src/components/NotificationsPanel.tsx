@@ -3,83 +3,10 @@ import { motion } from "framer-motion";
 import NotificationsSection from "./NotificationsSection";
 import ActivitiesSection from "./ActivitiesSection";
 import ContactsSection from "./ContactsSection";
-import { BugIcon, NewUserIcon, SubscribedIcon } from "./Icons";
-import type { NotificationsPanelProps } from '../interfaces/types';
+import type { NotificationsPanelProps } from "../interfaces/types";
+import { NOTIFICATIONS, ACTIVITIES, CONTACTS } from "../constants";
 
 const NotificationsPanel: React.FC<NotificationsPanelProps> = () => {
-  const notifications = [
-    {
-      id: 1,
-      type: "bug",
-      message: "You have a bug that needs...",
-      time: "Just now",
-      avatar: <BugIcon />,
-    },
-    {
-      id: 2,
-      type: "user",
-      message: "New user registered",
-      time: "59 minutes ago",
-      avatar: <NewUserIcon />,
-    },
-    {
-      id: 3,
-      type: "bug",
-      message: "You have a bug that needs...",
-      time: "12 hours ago",
-      avatar: <BugIcon />,
-    },
-    {
-      id: 4,
-      type: "subscription",
-      message: "Andi Lane subscribed to you",
-      time: "Today, 11:59 AM",
-      avatar: <SubscribedIcon />,
-    },
-  ];
-
-  const activities = [
-    {
-      id: 1,
-      message: "You have a bug that needs...",
-      time: "Just now",
-      avatar: "/3D05.png",
-    },
-    {
-      id: 2,
-      message: "Released a new version",
-      time: "59 minutes ago",
-      avatar: "/Female05.png",
-    },
-    {
-      id: 3,
-      message: "Submitted a bug",
-      time: "12 hours ago",
-      avatar: "/3D08.png",
-    },
-    {
-      id: 4,
-      message: "Modified A data in Page X",
-      time: "Today, 11:59 AM",
-      avatar: "/Male07.png",
-    },
-    {
-      id: 5,
-      message: "Deleted a page in Project X",
-      time: "Feb 2, 2023",
-      avatar: "/Male11.png",
-    },
-  ];
-
-  const contacts = [
-    { id: 1, name: "Natali Craig", avatar: "/Female15.png" },
-    { id: 2, name: "Drew Cano", avatar: "/Male08.png" },
-    { id: 3, name: "Orlando Diggs", avatar: "/Male06.png" },
-    { id: 4, name: "Andi Lane", avatar: "/Female05.png" },
-    { id: 5, name: "Kate Morrison", avatar: "/Female09.png" },
-    { id: 6, name: "Koray Okumus", avatar: "/Male07.png" },
-  ];
-
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -107,15 +34,14 @@ const NotificationsPanel: React.FC<NotificationsPanelProps> = () => {
           msOverflowStyle: "none" /* IE and Edge */,
         }}
       >
-
         {/* Notifications Section */}
-        <NotificationsSection notifications={notifications} />
+        <NotificationsSection notifications={NOTIFICATIONS} />
 
         {/* Activities Section */}
-        <ActivitiesSection activities={activities} />
+        <ActivitiesSection activities={ACTIVITIES} />
 
         {/* Contacts Section */}
-        <ContactsSection contacts={contacts} />
+        <ContactsSection contacts={CONTACTS} />
       </div>
     </motion.div>
   );

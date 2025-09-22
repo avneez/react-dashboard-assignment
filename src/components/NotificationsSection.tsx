@@ -1,9 +1,8 @@
 import React from "react";
+import { NOTIFICATION_ICONS } from '../constants';
 import type { NotificationsSectionProps } from '../interfaces/types';
 
-const NotificationsSection: React.FC<NotificationsSectionProps> = ({
-  notifications,
-}) => {
+const NotificationsSection: React.FC<NotificationsSectionProps> = ({ notifications }) => {
   return (
     <div
       className="flex flex-col gap-2"
@@ -26,29 +25,34 @@ const NotificationsSection: React.FC<NotificationsSectionProps> = ({
         </h3>
       </div>
       <div className="flex flex-col gap-2">
-        {notifications.map((notification) => (
-          <div
-            key={notification.id}
-            className="flex items-start rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors align-center"
-            style={{
-              width: "232px",
-              height: "46px",
-              gap: "8px",
-              borderRadius: "8px",
-              padding: "4px",
-            }}
-          >
-            <div className="w-6 h-6">{notification.avatar}</div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm text-gray-900 dark:text-white line-clamp-2 font-inter">
-                {notification.message}
-              </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 font-inter">
-                {notification.time}
-              </p>
+        {notifications.map((notification) => {
+          const IconComponent = NOTIFICATION_ICONS[notification.type as keyof typeof NOTIFICATION_ICONS];
+          return (
+            <div
+              key={notification.id}
+              className="flex items-start rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors align-center"
+              style={{
+                width: "232px",
+                height: "46px",
+                gap: "8px",
+                borderRadius: "8px",
+                padding: "4px",
+              }}
+            >
+              <div className="w-6 h-6 flex items-center justify-center">
+                {React.createElement(IconComponent, { className: "w-4 h-4 text-gray-600 dark:text-gray-300" })}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-gray-900 dark:text-white line-clamp-2 font-inter">
+                  {notification.message}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 font-inter">
+                  {notification.time}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

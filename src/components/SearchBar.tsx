@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         placeholder="Search"
         value={searchQuery}
         onChange={handleSearch}
-        className="text-gray-900 dark:text-gray-100 bg-transparent placeholder-[#1C1C1C33] dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none min-w-0 flex-1 text-sm"
+        className="text-gray-900 dark:text-gray-100 bg-transparent placeholder-[#1C1C1C33] dark:placeholder-gray-400 focus:outline-none min-w-0 flex-1 text-sm"
       />
     </div>
   );

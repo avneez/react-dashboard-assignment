@@ -5,6 +5,8 @@ import {
   FilterIcon,
 } from "./Icons";
 import { getSimpleStatusColor, getSortIcon, getSortTitle } from "../utils/helpers";
+import CustomCheckbox from "./CustomCheckbox";
+import { STATUS_OPTIONS } from '../constants';
 
 interface ActionsBarProps {
   onSort: () => void;
@@ -23,8 +25,6 @@ const ActionsBar: React.FC<ActionsBarProps> = ({
   isFilterOpen,
   setIsFilterOpen
 }) => {
-  const statusOptions = ['In Progress', 'Complete', 'Pending', 'Approved', 'Rejected'];
-
   const handleFilterChange = (status: string, checked: boolean) => {
     let newFilters;
     if (checked) {
@@ -40,7 +40,7 @@ const ActionsBar: React.FC<ActionsBarProps> = ({
   };
 
   const selectAllFilters = () => {
-    onFilter(statusOptions);
+    onFilter(STATUS_OPTIONS);
   };
 
   return (
@@ -76,9 +76,9 @@ const ActionsBar: React.FC<ActionsBarProps> = ({
             />
 
             {/* Dropdown Content */}
-            <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-20 p-4">
+            <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-[#18181b] rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-20 p-4">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Filter by Status</h3>
+                <div className="text-gray-600 dark:text-white text-sm">Filter by Status</div>
                 <button
                   onClick={() => setIsFilterOpen(false)}
                   className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
@@ -105,13 +105,11 @@ const ActionsBar: React.FC<ActionsBarProps> = ({
 
               {/* Status Options */}
               <div className="space-y-2">
-                {statusOptions.map((status) => (
+                {STATUS_OPTIONS.map((status) => (
                   <label key={status} className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
-                    <input
-                      type="checkbox"
+                    <CustomCheckbox
                       checked={activeFilters.includes(status)}
-                      onChange={(e) => handleFilterChange(status, e.target.checked)}
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      onChange={() => handleFilterChange(status, !activeFilters.includes(status))}
                     />
                     <div className="flex items-center gap-2 flex-1">
                       <div className={`w-2 h-2 rounded-full ${getSimpleStatusColor(status)}`} />
