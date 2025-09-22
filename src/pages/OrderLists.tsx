@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
-import OrderTable from "../components/OrderTable";
 import ActionsBar from "../components/ActionsBar";
 import SearchBar from "../components/SearchBar";
+import TableLoader from "../components/TableLoader";
 import { OrdersAPI } from "../services/ordersAPI";
+import { searchOrderFields } from "../utils/helpers";
 import type { Order } from "../interfaces/types";
+
+// Lazy load the heavy OrderTable component
+const OrderTable = React.lazy(() => import("../components/OrderTable"));
 
 const OrderLists: React.FC = () => {
   const [originalOrders, setOriginalOrders] = useState<Order[]>([]);
@@ -33,13 +37,7 @@ const OrderLists: React.FC = () => {
     if (searchQuery.trim() === "") {
       ordersToFilter = originalOrders;
     } else {
-      ordersToFilter = originalOrders.filter(order =>
-        order.user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        order.project.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        order.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        order.orderId.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        order.status.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      ordersToFilter = originalOrders.filter(order => searchOrderFields(order, searchQuery));
     }
 
     const filtered = applyFilters(ordersToFilter, statuses);
@@ -73,13 +71,7 @@ const OrderLists: React.FC = () => {
         if (searchQuery.trim() === "") {
           sortedOrders = [...originalOrders];
         } else {
-          sortedOrders = originalOrders.filter(order =>
-            order.user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            order.project.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            order.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            order.orderId.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            order.status.toLowerCase().includes(searchQuery.toLowerCase())
-          );
+          sortedOrders = originalOrders.filter(order => searchOrderFields(order, searchQuery));
         }
         sortedOrders = applyFilters(sortedOrders, activeFilters);
         break;
@@ -131,14 +123,7 @@ const OrderLists: React.FC = () => {
       setAllChecked(false);
     } catch (err) {
       console.error("Search error:", err);
-      const filtered = originalOrders.filter(
-        (order) =>
-          order.user.name.toLowerCase().includes(query.toLowerCase()) ||
-          order.project.toLowerCase().includes(query.toLowerCase()) ||
-          order.address.toLowerCase().includes(query.toLowerCase()) ||
-          order.orderId.toLowerCase().includes(query.toLowerCase()) ||
-          order.status.toLowerCase().includes(query.toLowerCase())
-      );
+      const filtered = originalOrders.filter(order => searchOrderFields(order, query));
 
       const filteredResults = applyFilters(filtered, activeFilters);
       setFilteredOrders(filteredResults);
@@ -237,13 +222,15 @@ const OrderLists: React.FC = () => {
               </div>
             </div>
           ) : (
-            <OrderTable
-              orders={filteredOrders}
-              checkedItems={checkedItems}
-              allChecked={allChecked}
-              handleMasterCheckbox={handleMasterCheckbox}
-              handleItemCheckbox={handleItemCheckbox}
-            />
+            <Suspense fallback={<TableLoader />}>
+              <OrderTable
+                orders={filteredOrders}
+                checkedItems={checkedItems}
+                allChecked={allChecked}
+                handleMasterCheckbox={handleMasterCheckbox}
+                handleItemCheckbox={handleItemCheckbox}
+              />
+            </Suspense>
           )}
         </div>
       </motion.div>

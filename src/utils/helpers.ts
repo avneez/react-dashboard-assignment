@@ -95,3 +95,20 @@ export const getSortTitle = (sortOrder: 'asc' | 'desc' | 'none'): string => {
       return 'Click to sort oldest first';
   }
 };
+
+/**
+ * Search orders by query across multiple fields
+ * @param order - The order object to search in
+ * @param query - The search query string
+ * @returns Boolean indicating if the order matches the search query
+ */
+export const searchOrderFields = (order: any, query: string): boolean => {
+  const lowerQuery = query.toLowerCase();
+  return (
+    order.user.name.toLowerCase().includes(lowerQuery) ||
+    order.project.toLowerCase().includes(lowerQuery) ||
+    order.address.toLowerCase().includes(lowerQuery) ||
+    order.orderId.toLowerCase().includes(lowerQuery) ||
+    order.status.toLowerCase().includes(lowerQuery)
+  );
+};
