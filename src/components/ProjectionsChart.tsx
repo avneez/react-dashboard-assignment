@@ -80,8 +80,8 @@ const ProjectionsChart: React.FC = () => {
                 fontFamily: 'Inter'
               }}
             />
-            <Bar dataKey="actuals" stackId="a" fill="#A8C5DA" name="Actuals" />
-            <Bar dataKey="projections" stackId="a" fill="#C4D7E8" name="Projections" />
+            <Bar dataKey="actuals" stackId="a" fill="#A8C5DA" name="Actuals" radius={[0, 0, 0, 0]} />
+            <Bar dataKey="projections" stackId="a" fill="#C4D7E8" name="Projections" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

@@ -2,19 +2,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
 import { useLocation } from 'react-router-dom';
-import { CaretRightIcon, DefaultIcon, EcommerceIcon, ProjectIcon, OnlineCoursesIcon, OrderListsIcon } from './Icons';
+
 import type { MenuItem, SidebarDashboardsProps } from '../interfaces/types';
+import { CaretRightIcon } from './Icons';
+import { DASHBOARD_ITEMS } from '../constants';
 
 const SidebarDashboards: React.FC<SidebarDashboardsProps> = ({ isOpen, onNavigate }) => {
   const location = useLocation();
 
-  const dashboardItems: MenuItem[] = [
-    { icon: DefaultIcon, label: 'Default', active: location.pathname === '/', path: '/' },
-    { icon: EcommerceIcon, label: 'eCommerce', active: location.pathname === '/ecommerce', path: '/ecommerce' },
-    { icon: OrderListsIcon, label: 'Order Lists', active: location.pathname === '/orders', path: '/orders' },
-    { icon: ProjectIcon, label: 'Projects', active: false, path: '/projects' },
-    { icon: OnlineCoursesIcon, label: 'Online Courses', active: false, path: '/courses' }
-  ];
+  // Create dashboard items with dynamic active state based on current location
+  const dashboardItems: MenuItem[] = DASHBOARD_ITEMS.map(item => ({
+    ...item,
+    active: location.pathname === item.path
+  }));
 
   return (
     <div className="pb-3">

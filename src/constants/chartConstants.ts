@@ -17,3 +17,11 @@ export const PROJECTIONS_CHART_DATA = [
   { name: 'May', actual: 590, projected: 560 },
   { name: 'Jun', actual: 320, projected: 340 }
 ];
+
+// Sales data for pie chart
+export const SALES_DATA = [
+  { name: 'Direct', value: 200.56, color: '#2F3349' },     // Dynamic based on theme (Black or Light Purple)
+  { name: 'E-mail', value: 88.96, color: '#7DD3FC' },      // Blue
+  { name: 'Affilliate', value: 135.18, color: '#95D3AE' }, // Green
+  { name: 'Sponsored', value: 154.02, color: '#8B9CF5' }   // Purple
+];

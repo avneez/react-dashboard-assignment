@@ -6,10 +6,12 @@ export const PAGINATION_PAGES = Array.from({ length: 5 }, (_, i) => i + 1);
 
 // Table column definitions
 export const ORDER_TABLE_COLUMNS = [
-  { key: 'id', label: 'Order ID', width: '100px' },
-  { key: 'user', label: 'User', width: '150px' },
-  { key: 'project', label: 'Project', width: '200px' },
-  { key: 'address', label: 'Address', width: '180px' },
-  { key: 'date', label: 'Date', width: '120px' },
-  { key: 'status', label: 'Status', width: '100px' }
+    { label: "", width: "w-6", isCheckbox: true },
+    { label: "Order ID", width: "w-[100px]" },
+    { label: "User", width: "w-[214.5px]" },
+    { label: "Project", width: "w-[214.5px]" },
+    { label: "Address", width: "w-[270px]" },
+    { label: "Date", width: "w-[191px]" },
+    { label: "Status", width: "w-[110px]" },
+    { label: "", width: "w-12", isActions: true }
 ];

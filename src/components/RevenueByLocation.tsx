@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import MapWithMarkers from "./MapWithMarkers";
-import { LOCATION_DATA, MAP_MARKERS, MAX_REVENUE } from '../constants';
+import { LOCATION_DATA, MAP_MARKERS, MAX_REVENUE } from "../constants";
 
 const RevenueByLocation: React.FC = () => {
   return (
@@ -30,10 +30,8 @@ const RevenueByLocation: React.FC = () => {
       </div>
       {/* World Map Container */}
       <div
-        className="relative rounded-lg mb-2 flex-shrink-0 border-gray-200 dark:border-gray-600 overflow-hidden"
+        className="relative rounded-lg flex-shrink-0 border-gray-200 dark:border-gray-600 overflow-hidden w-[154px] h-[82px]"
         style={{
-          width: "154px",
-          height: "82px",
           borderRadius: "8px",
         }}
       >
@@ -70,10 +68,8 @@ const RevenueByLocation: React.FC = () => {
                 <div className="relative mt-0" style={{ marginTop: 0 }}>
                   {/* Background Bar */}
                   <div
-                    className="bg-gray-200 dark:bg-gray-600"
+                    className="bg-gray-200 dark:bg-gray-600 w-[114px] h-[2px]"
                     style={{
-                      width: "114px",
-                      height: "2px",
                       borderRadius: "80px",
                     }}
                   />

@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import CustomPieChart from './PieChart';
+import { useTheme } from '../contexts/ThemeContext';
+import { SALES_DATA } from '../constants';
 
 const TotalSales: React.FC = () => {
-  const [rawSalesData] = useState([
-    { name: 'Direct', value: 200.56, color: '#2F3349' },     // Black - largest
-    { name: 'E-mail', value: 88.96, color: '#7DD3FC' },      // Blue - smallest
-    { name: 'Affilliate', value: 135.18, color: '#95D3AE' }, // Green
-    { name: 'Sponsored', value: 154.02, color: '#8B9CF5' }   // Purple
-  ]);
+  const { isDarkMode } = useTheme();
+  const [rawSalesData] = useState(SALES_DATA);
 
-  // Calculate total value and percentages
+  // Calculate total value and percentages with dynamic colors
   const totalvalue = rawSalesData.reduce((sum, item) => sum + item.value, 0);
   const salesData = rawSalesData.map(item => ({
     ...item,
-    value: Number(((item.value / totalvalue) * 100).toFixed(1))
+    value: Number(((item.value / totalvalue) * 100).toFixed(1)),
+    color: item.name === 'Direct'
+      ? (isDarkMode ? '#c6c7f8' : '#2F3349')
+      : item.color
   }));
 
 

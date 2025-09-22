@@ -6,11 +6,14 @@ import {
   Marker,
 } from "react-simple-maps";
 import type { MarkerType } from "../interfaces/types";
-import { GEO_URL } from '../constants';
+import { GEO_URL } from "../constants";
 
 const MapWithMarkers: React.FC<{ markers: MarkerType[] }> = ({ markers }) => {
   return (
-    <ComposableMap>
+    <ComposableMap
+      style={{ width: "100%", height: "100%", marginRight: "15px", marginLeft: "-15px" }}
+      projectionConfig={{ scale: 225 }}
+    >
       <Geographies geography={GEO_URL}>
         {({ geographies }) =>
           geographies.map((geo) => (
@@ -28,9 +31,9 @@ const MapWithMarkers: React.FC<{ markers: MarkerType[] }> = ({ markers }) => {
       {markers.map(({ name, coordinates }) => (
         <Marker key={name} coordinates={coordinates}>
           <circle
-            r={12}
+            r={16}
             className="fill-black dark:fill-white stroke-white dark:stroke-black"
-            strokeWidth={4}
+            strokeWidth={8}
           />
         </Marker>
       ))}

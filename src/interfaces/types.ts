@@ -88,6 +88,13 @@ export interface SidebarDashboardsProps {
   onNavigate: (path: string) => void;
 }
 
+export interface DashboardItemBase {
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  path: string;
+}
+
+
 export interface SidebarFavouritesProps {
   isOpen: boolean;
   onNavigate: (path: string) => void;

@@ -4,7 +4,7 @@ import { CalendarIcon } from "./Icons";
 import { getStatusColor } from "../utils/helpers";
 import Pagination from "./Pagination";
 import CustomCheckbox from "./CustomCheckbox";
-import { PAGINATION_PAGES } from '../constants';
+import { ORDER_TABLE_COLUMNS, PAGINATION_PAGES } from "../constants";
 import type {
   OrderTableProps,
   OrderTableHeaderProps,
@@ -15,21 +15,10 @@ const OrderTableHeader: React.FC<OrderTableHeaderProps> = ({
   allChecked,
   handleMasterCheckbox,
 }) => {
-  const columns = [
-    { label: "", width: "w-6", isCheckbox: true },
-    { label: "Order ID", width: "w-[100px]" },
-    { label: "User", width: "w-[214.5px]" },
-    { label: "Project", width: "w-[214.5px]" },
-    { label: "Address", width: "w-[270px]" },
-    { label: "Date", width: "w-[191px]" },
-    { label: "Status", width: "w-[110px]" },
-    { label: "", width: "w-12", isActions: true },
-  ];
-
   return (
     <thead>
       <tr className="border-b border-gray-200 dark:border-gray-700">
-        {columns.map((column, index) => (
+        {ORDER_TABLE_COLUMNS.map((column, index) => (
           <th
             key={index}
             className={`text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm ${column.width}`}
@@ -39,9 +28,7 @@ const OrderTableHeader: React.FC<OrderTableHeaderProps> = ({
                 checked={allChecked}
                 onChange={handleMasterCheckbox}
               />
-            ) : column.isActions ? (
-              null // Actions column is empty
-            ) : (
+            ) : column.isActions ? null : ( // Actions column is empty
               column.label
             )}
           </th>
