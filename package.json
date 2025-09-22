@@ -7,7 +7,14 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:local": "ENV=local playwright test",
+    "test:e2e:local:ui": "ENV=local playwright test --ui",
+    "test:e2e:local:headed": "ENV=local playwright test --headed",
+    "test:install": "playwright install"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -20,9 +27,11 @@
     "recharts": "^2.8.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^24.5.2",
     "@types/react": "^18.2.0",
-    "@types/react-simple-maps": "^3.0.6",
     "@types/react-dom": "^18.2.0",
+    "@types/react-simple-maps": "^3.0.6",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^8.45.0",
