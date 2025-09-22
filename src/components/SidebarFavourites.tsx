@@ -9,9 +9,9 @@ const SidebarFavourites: React.FC<SidebarFavouritesProps> = ({
   onNavigate,
 }) => {
   const favouriteItems: MenuItem[] = [
-    { icon: GrayDotBoldIcon, label: "Overview", active: false, path: "/" },
+    { icon: <GrayDotBoldIcon />, label: "Overview", active: false, path: "/" },
     {
-      icon: GrayDotBoldIcon,
+      icon: <GrayDotBoldIcon />,
       label: "Projects",
       active: false,
       path: "/projects",
@@ -44,8 +44,7 @@ const SidebarFavourites: React.FC<SidebarFavouritesProps> = ({
                   }
                 )}
               >
-
-                <item.icon
+                <GrayDotBoldIcon
                   className={clsx("w-5 h-5 flex-shrink-0", {
                     "text-blue-600 dark:text-blue-400": item.active,
                     "text-gray-500 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300":

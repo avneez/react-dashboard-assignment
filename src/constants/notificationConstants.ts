@@ -1,15 +1,3 @@
-import { BugIcon, NewUserIcon, SubscribedIcon } from "../components/Icons";
-
-// Icon mapping for type safety
-export const NOTIFICATION_ICONS = {
-    bug: BugIcon,
-    user: NewUserIcon,
-    subscription: SubscribedIcon,
-} as const;
-
-// Notification types for type safety
-export type NotificationType = keyof typeof NOTIFICATION_ICONS;
-
 // Notifications data without JSX (components will render icons)
 export const NOTIFICATIONS = [
     {

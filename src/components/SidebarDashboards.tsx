@@ -4,17 +4,20 @@ import { clsx } from 'clsx';
 import { useLocation } from 'react-router-dom';
 
 import type { MenuItem, SidebarDashboardsProps } from '../interfaces/types';
-import { CaretRightIcon } from './Icons';
-import { DASHBOARD_ITEMS } from '../constants';
+import { CaretRightIcon, DefaultIcon, EcommerceIcon, OnlineCoursesIcon, OrderListsIcon, ProjectIcon } from './Icons';
 
 const SidebarDashboards: React.FC<SidebarDashboardsProps> = ({ isOpen, onNavigate }) => {
   const location = useLocation();
 
-  // Create dashboard items with dynamic active state based on current location
-  const dashboardItems: MenuItem[] = DASHBOARD_ITEMS.map(item => ({
-    ...item,
-    active: location.pathname === item.path
-  }));
+  const dashboardItems: MenuItem[] = [
+    {
+      icon: <DefaultIcon />, label: 'Default', path: '/', active: location.pathname === '/'
+    },
+    { icon: <EcommerceIcon />, label: 'eCommerce', path: '/ecommerce', active: location.pathname === '/ecommerce' },
+    { icon: <OrderListsIcon />, label: 'Order Lists', path: '/orders', active: location.pathname === '/orders' },
+    { icon: <ProjectIcon />, label: 'Projects', path: '/projects', active: location.pathname === '/projects' },
+    { icon: <OnlineCoursesIcon />, label: 'Online Courses', path: '/courses', active: location.pathname === '/courses' },
+  ]
 
   return (
     <div className="pb-3">
@@ -59,9 +62,21 @@ const SidebarDashboards: React.FC<SidebarDashboardsProps> = ({ isOpen, onNavigat
                   <CaretRightIcon className="text-gray-500 dark:text-white" />
                 </div>
               )}
-              <item.icon className={clsx('w-5 h-5 flex-shrink-0', {
+              {item.label==='Default' && <DefaultIcon className={clsx('w-5 h-5 flex-shrink-0', {
                 'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
-              })} />
+              })} />}
+              {item.label==='eCommerce' && <EcommerceIcon className={clsx('w-5 h-5 flex-shrink-0', {
+                'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
+              })} />}
+              {item.label==='Order Lists' && <OrderListsIcon className={clsx('w-5 h-5 flex-shrink-0', {
+                'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
+              })} />}
+              {item.label==='Projects' && <ProjectIcon className={clsx('w-5 h-5 flex-shrink-0', {
+                'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
+              })} />}
+              {item.label==='Online Courses' && <OnlineCoursesIcon className={clsx('w-5 h-5 flex-shrink-0', {
+                'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
+              })} />}
               {isOpen && (
                 <motion.span
                   initial={{ opacity: 0 }}

@@ -70,12 +70,12 @@ export interface SubItem {
 }
 
 export interface MenuItem {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  active: boolean;
-  path: string;
   hasSubItems?: boolean;
-  subItems?: SubItem[];
+  subItems?: any;
+  icon: React.ReactNode;
+  path: string;
+  active: boolean;
+  label: string;
 }
 
 export interface SidebarPagesProps {

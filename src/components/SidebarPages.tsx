@@ -9,7 +9,7 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
 
   const pagesItems: MenuItem[] = [
     {
-      icon: UserProfileIcon,
+      icon: <UserProfileIcon />,
       label: 'User Profile',
       active: false,
       path: '/profile',
@@ -22,10 +22,10 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
         { label: 'Followers', path: '/profile/followers' }
       ]
     },
-    { icon: AccountIcon, label: 'Account', active: false, path: '/account' },
-    { icon: CorporateIcon, label: 'Corporate', active: false, path: '/corporate' },
-    { icon: BlogIcon, label: 'Blog', active: false, path: '/blog' },
-    { icon: SocialIcon, label: 'Social', active: false, path: '/social' }
+    { icon: <AccountIcon />, label: 'Account', active: false, path: '/account' },
+    { icon: <CorporateIcon />, label: 'Corporate', active: false, path: '/corporate' },
+    { icon: <BlogIcon />, label: 'Blog', active: false, path: '/blog' },
+    { icon: <SocialIcon />, label: 'Social', active: false, path: '/social' }
   ];
 
   const getWrapperHeight = () => {
@@ -70,10 +70,26 @@ const SidebarPages: React.FC<SidebarPagesProps> = ({ isOpen, onNavigate }) => {
                   )}
                 </div>
               )}
-              <item.icon className={clsx('w-5 h-5 flex-shrink-0', {
+              {item.label=== 'User Profile' && <UserProfileIcon className={clsx('w-5 h-5 flex-shrink-0', {
                 'text-blue-600 dark:text-blue-400': item.active,
                 'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
-              })} />
+              })} />}
+              {item.label=== 'Account' && <AccountIcon className={clsx('w-5 h-5 flex-shrink-0', {
+                'text-blue-600 dark:text-blue-400': item.active,
+                'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
+              })} />}
+              {item.label=== 'Corporate' && <CorporateIcon className={clsx('w-5 h-5 flex-shrink-0', {
+                'text-blue-600 dark:text-blue-400': item.active,
+                'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
+              })} />}
+              {item.label=== 'Blog' && <BlogIcon className={clsx('w-5 h-5 flex-shrink-0', {
+                'text-blue-600 dark:text-blue-400': item.active,
+                'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
+              })} />}
+              {item.label=== 'Social' && <SocialIcon className={clsx('w-5 h-5 flex-shrink-0', {
+                'text-blue-600 dark:text-blue-400': item.active,
+                'text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300': !item.active
+              })} />}
               {isOpen && (
                 <motion.span
                   initial={{ opacity: 0 }}

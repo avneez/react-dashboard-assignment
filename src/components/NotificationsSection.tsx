@@ -1,6 +1,7 @@
 import React from "react";
-import { NOTIFICATION_ICONS } from '../constants';
+// import { NOTIFICATION_ICONS } from '../constants';
 import type { NotificationsSectionProps } from '../interfaces/types';
+import { BugIcon, NewUserIcon, SubscribedIcon } from "./Icons";
 
 const NotificationsSection: React.FC<NotificationsSectionProps> = ({ notifications }) => {
   return (
@@ -26,7 +27,6 @@ const NotificationsSection: React.FC<NotificationsSectionProps> = ({ notificatio
       </div>
       <div className="flex flex-col gap-2">
         {notifications.map((notification) => {
-          const IconComponent = NOTIFICATION_ICONS[notification.type as keyof typeof NOTIFICATION_ICONS];
           return (
             <div
               key={notification.id}
@@ -40,7 +40,9 @@ const NotificationsSection: React.FC<NotificationsSectionProps> = ({ notificatio
               }}
             >
               <div className="w-6 h-6 flex items-center justify-center">
-                {React.createElement(IconComponent, { className: "w-4 h-4 text-gray-600 dark:text-gray-300" })}
+                {notification.type==="bug" && <BugIcon className="w-6 h-6 text-gray-600 dark:text-gray-300" />}
+                {notification.type==="user" && <NewUserIcon className="w-6 h-6 text-gray-600 dark:text-gray-300" />}
+                {notification.type==="subscription" && <SubscribedIcon className="w-6 h-6 text-gray-600 dark:text-gray-300" />}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-gray-900 dark:text-white line-clamp-2 font-inter">
