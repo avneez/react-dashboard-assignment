@@ -1,167 +1,53 @@
 import React, { useState } from "react";
 import { MoreHorizontal } from "lucide-react";
 import { CalendarIcon } from "./Icons";
+import { getStatusColor } from "../utils/helpers";
+import Pagination from "./Pagination";
+import CustomCheckbox from "./CustomCheckbox";
 import type {
   OrderTableProps,
   OrderTableHeaderProps,
   OrderTableBodyProps,
-  PaginationProps,
-  CustomCheckboxProps
 } from "../interfaces/types";
-
-const Pagination = ({
-  page,
-  setPage,
-  totalItems,
-  itemsPerPage = 10,
-  paginationPages,
-}: PaginationProps) => {
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  const handlePrevious = () => {
-    if (page > 1) {
-      setPage(page - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (page < totalPages) {
-      setPage(page + 1);
-    }
-  };
-
-  return (
-    <div className="flex items-center justify-end mt-4">
-      <div className="flex items-center gap-2 w-[244px] h-[28px]">
-        {/* Previous Button */}
-        <button
-          onClick={handlePrevious}
-          disabled={page <= 1}
-          className={`p-1 rounded transition-colors w-7 h-7 flex items-center justify-center ${
-            page <= 1
-              ? "text-gray-300 dark:text-gray-600 cursor-not-allowed"
-              : "text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
-          }`}
-        >
-          <span className="text-sm">‹</span>
-        </button>
-
-        {paginationPages.map((pageNo) => (
-          <button
-            key={pageNo}
-            onClick={() => setPage(pageNo)}
-            className={`w-7 h-7 rounded transition-colors flex items-center justify-center text-[14px] ${
-              pageNo === page
-                ? "bg-[#1C1C1C0D] dark:bg-gray-600"
-                : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-            }`}
-          >
-            {pageNo}
-          </button>
-        ))}
-
-        {/* Next Button */}
-        <button
-          onClick={handleNext}
-          disabled={page >= totalPages}
-          className={`p-1 rounded transition-colors w-7 h-7 flex items-center justify-center ${
-            page >= totalPages
-              ? "text-gray-300 dark:text-gray-600 cursor-not-allowed"
-              : "text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
-          }`}
-        >
-          <span className="text-sm">›</span>
-        </button>
-      </div>
-    </div>
-  );
-};
-
-const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ checked = false, onChange }) => {
-  return (
-    <div
-      onClick={onChange}
-      className={`w-[14px] h-[14px] rounded-[4px] border cursor-pointer flex items-center justify-center transition-all duration-200 ${
-        checked
-          ? "bg-black dark:bg-[#c6c7f8] border-black dark:border-[#6c67f8]"
-          : "bg-gray-100 border-gray-300 dark:bg-black dark:border-[#FFFFFF33]"
-      }`}
-    >
-      {checked && (
-        <svg
-          width="10"
-          height="8"
-          viewBox="0 0 10 8"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className=" stroke-white dark:stroke-black"
-        >
-          <path
-            d="M8.5 1.5L3.5 6.5L1.5 4.5"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      )}
-    </div>
-  );
-};
 
 const OrderTableHeader: React.FC<OrderTableHeaderProps> = ({
   allChecked,
   handleMasterCheckbox,
 }) => {
+  const columns = [
+    { label: "", width: "w-6", isCheckbox: true },
+    { label: "Order ID", width: "w-[100px]" },
+    { label: "User", width: "w-[214.5px]" },
+    { label: "Project", width: "w-[214.5px]" },
+    { label: "Address", width: "w-[270px]" },
+    { label: "Date", width: "w-[191px]" },
+    { label: "Status", width: "w-[110px]" },
+    { label: "", width: "w-12", isActions: true },
+  ];
+
   return (
     <thead>
       <tr className="border-b border-gray-200 dark:border-gray-700">
-        <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm w-6">
-          <CustomCheckbox
-            checked={allChecked}
-            onChange={handleMasterCheckbox}
-          />
-        </th>
-        <th className="text-left w-[100px] py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-          Order ID
-        </th>
-        <th className="text-left w-[214.5px] py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-          User
-        </th>
-        <th className="text-left w-[214.5px] py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-          Project
-        </th>
-        <th className="text-left w-[270px] py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-          Address
-        </th>
-        <th className="text-left w-[191px] py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-          Date
-        </th>
-        <th className="text-left w-[110px] py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm">
-          Status
-        </th>
-        <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm w-12">
-          {/* Actions column */}
-        </th>
+        {columns.map((column, index) => (
+          <th
+            key={index}
+            className={`text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-sm ${column.width}`}
+          >
+            {column.isCheckbox ? (
+              <CustomCheckbox
+                checked={allChecked}
+                onChange={handleMasterCheckbox}
+              />
+            ) : column.isActions ? (
+              null // Actions column is empty
+            ) : (
+              column.label
+            )}
+          </th>
+        ))}
       </tr>
     </thead>
   );
-};
-
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case "In Progress":
-      return { dot: "bg-[#95A4FC]", text: "text-[#8A8CD9]" };
-    case "Complete":
-      return { dot: "bg-[#A1E3CB]", text: "text-[#4AA785]" };
-    case "Pending":
-      return { dot: "bg-[#B1E3FF]", text: "text-[#59A8D4]" };
-    case "Approved":
-      return { dot: "bg-[#FFE999]", text: "text-[#FFC555]" };
-    case "Rejected":
-      return { dot: "bg-[#1C1C1C66]", text: "text-[#1C1C1C66]" };
-    default:
-      return { dot: "bg-gray-500", text: "text-gray-600 dark:text-gray-400" };
-  }
 };
 
 const OrderTableBody: React.FC<OrderTableBodyProps> = ({

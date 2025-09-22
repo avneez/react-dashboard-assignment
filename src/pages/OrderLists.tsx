@@ -1,436 +1,156 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  PlusIcon,
-  SortIcon,
-  FilterIcon,
-  SearchIcon,
-} from "../components/Icons";
 import OrderTable from "../components/OrderTable";
+import ActionsBar from "../components/ActionsBar";
+import SearchBar from "../components/SearchBar";
+import { OrdersAPI } from "../services/ordersAPI";
 import type { Order } from "../interfaces/types";
 
-const orders: Order[] = [
-  {
-    id: "1",
-    user: { name: "Natali Craig", avatar: "/Female15.png" },
-    project: "Landing Page",
-    address: "Meadow Lane Oakland",
-    date: "Just now",
-    status: "In Progress",
-    orderId: "#CM9801",
-  },
-  {
-    id: "2",
-    user: { name: "Kate Morrison", avatar: "/Female09.png" },
-    project: "CRM Admin pages",
-    address: "Larry San Francisco",
-    date: "A minute ago",
-    status: "Complete",
-    orderId: "#CM9802",
-  },
-  {
-    id: "3",
-    user: { name: "Drew Cano", avatar: "/Male08.png" },
-    project: "Client Project",
-    address: "Bagwell Avenue Ocala",
-    date: "1 hour ago",
-    status: "Pending",
-    orderId: "#CM9803",
-  },
-  {
-    id: "4",
-    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
-    project: "Admin Dashboard",
-    address: "Washburn Baton Rouge",
-    date: "Yesterday",
-    status: "Approved",
-    orderId: "#CM9804",
-  },
-  {
-    id: "5",
-    user: { name: "Andi Lane", avatar: "/Female08.png" },
-    project: "App Landing Page",
-    address: "Nest Lane Olivette",
-    date: "Feb 2, 2023",
-    status: "Rejected",
-    orderId: "#CM9805",
-  },
-  {
-    id: "6",
-    user: { name: "Natali Craig", avatar: "/Female15.png" },
-    project: "Landing Page",
-    address: "Meadow Lane Oakland",
-    date: "Just now",
-    status: "In Progress",
-    orderId: "#CM9801",
-  },
-  {
-    id: "7",
-    user: { name: "Kate Morrison", avatar: "/Female09.png" },
-    project: "CRM Admin pages",
-    address: "Larry San Francisco",
-    date: "A minute ago",
-    status: "Complete",
-    orderId: "#CM9802",
-  },
-  {
-    id: "8",
-    user: { name: "Drew Cano", avatar: "/Male08.png" },
-    project: "Client Project",
-    address: "Bagwell Avenue Ocala",
-    date: "1 hour ago",
-    status: "Pending",
-    orderId: "#CM9803",
-  },
-  {
-    id: "9",
-    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
-    project: "Admin Dashboard",
-    address: "Washburn Baton Rouge",
-    date: "Yesterday",
-    status: "Approved",
-    orderId: "#CM9804",
-  },
-  {
-    id: "10",
-    user: { name: "Andi Lane", avatar: "/Female08.png" },
-    project: "App Landing Page",
-    address: "Nest Lane Olivette",
-    date: "Feb 2, 2023",
-    status: "Rejected",
-    orderId: "#CM9805",
-  },
-  {
-    id: "11",
-    user: { name: "Andi Lane", avatar: "/Female08.png" },
-    project: "App Landing Page",
-    address: "Nest Lane Olivette",
-    date: "Feb 2, 2023",
-    status: "Rejected",
-    orderId: "#CM9805",
-  },
-  {
-    id: "12",
-    user: { name: "Natali Craig", avatar: "/Female15.png" },
-    project: "Landing Page",
-    address: "Meadow Lane Oakland",
-    date: "Just now",
-    status: "In Progress",
-    orderId: "#CM9801",
-  },
-  {
-    id: "13",
-    user: { name: "Kate Morrison", avatar: "/Female09.png" },
-    project: "CRM Admin pages",
-    address: "Larry San Francisco",
-    date: "A minute ago",
-    status: "Complete",
-    orderId: "#CM9802",
-  },
-  {
-    id: "14",
-    user: { name: "Drew Cano", avatar: "/Male08.png" },
-    project: "Client Project",
-    address: "Bagwell Avenue Ocala",
-    date: "1 hour ago",
-    status: "Pending",
-    orderId: "#CM9803",
-  },
-  {
-    id: "15",
-    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
-    project: "Admin Dashboard",
-    address: "Washburn Baton Rouge",
-    date: "Yesterday",
-    status: "Approved",
-    orderId: "#CM9804",
-  },
-  {
-    id: "16",
-    user: { name: "Andi Lane", avatar: "/Female08.png" },
-    project: "App Landing Page",
-    address: "Nest Lane Olivette",
-    date: "Feb 2, 2023",
-    status: "Rejected",
-    orderId: "#CM9805",
-  },
-  {
-    id: "17",
-    user: { name: "Natali Craig", avatar: "/Female15.png" },
-    project: "Landing Page",
-    address: "Meadow Lane Oakland",
-    date: "Just now",
-    status: "In Progress",
-    orderId: "#CM9801",
-  },
-  {
-    id: "18",
-    user: { name: "Kate Morrison", avatar: "/Female09.png" },
-    project: "CRM Admin pages",
-    address: "Larry San Francisco",
-    date: "A minute ago",
-    status: "Complete",
-    orderId: "#CM9802",
-  },
-  {
-    id: "19",
-    user: { name: "Drew Cano", avatar: "/Male08.png" },
-    project: "Client Project",
-    address: "Bagwell Avenue Ocala",
-    date: "1 hour ago",
-    status: "Pending",
-    orderId: "#CM9803",
-  },
-  {
-    id: "20",
-    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
-    project: "Admin Dashboard",
-    address: "Washburn Baton Rouge",
-    date: "Yesterday",
-    status: "Approved",
-    orderId: "#CM9804",
-  },
-  {
-    id: "21",
-    user: { name: "Andi Lane", avatar: "/Female08.png" },
-    project: "App Landing Page",
-    address: "Nest Lane Olivette",
-    date: "Feb 2, 2023",
-    status: "Rejected",
-    orderId: "#CM9805",
-  },
-  {
-    id: "22",
-    user: { name: "Natali Craig", avatar: "/Female15.png" },
-    project: "Landing Page",
-    address: "Meadow Lane Oakland",
-    date: "Just now",
-    status: "In Progress",
-    orderId: "#CM9801",
-  },
-  {
-    id: "23",
-    user: { name: "Kate Morrison", avatar: "/Female09.png" },
-    project: "CRM Admin pages",
-    address: "Larry San Francisco",
-    date: "A minute ago",
-    status: "Complete",
-    orderId: "#CM9802",
-  },
-  {
-    id: "24",
-    user: { name: "Drew Cano", avatar: "/Male08.png" },
-    project: "Client Project",
-    address: "Bagwell Avenue Ocala",
-    date: "1 hour ago",
-    status: "Pending",
-    orderId: "#CM9803",
-  },
-  {
-    id: "26",
-    user: { name: "Andi Lane", avatar: "/Female08.png" },
-    project: "App Landing Page",
-    address: "Nest Lane Olivette",
-    date: "Feb 2, 2023",
-    status: "Rejected",
-    orderId: "#CM9805",
-  },
-  {
-    id: "27",
-    user: { name: "Natali Craig", avatar: "/Female15.png" },
-    project: "Landing Page",
-    address: "Meadow Lane Oakland",
-    date: "Just now",
-    status: "In Progress",
-    orderId: "#CM9801",
-  },
-  {
-    id: "28",
-    user: { name: "Kate Morrison", avatar: "/Female09.png" },
-    project: "CRM Admin pages",
-    address: "Larry San Francisco",
-    date: "A minute ago",
-    status: "Complete",
-    orderId: "#CM9802",
-  },
-  {
-    id: "29",
-    user: { name: "Drew Cano", avatar: "/Male08.png" },
-    project: "Client Project",
-    address: "Bagwell Avenue Ocala",
-    date: "1 hour ago",
-    status: "Pending",
-    orderId: "#CM9803",
-  },
-  {
-    id: "25",
-    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
-    project: "Admin Dashboard",
-    address: "Washburn Baton Rouge",
-    date: "Yesterday",
-    status: "Approved",
-    orderId: "#CM9804",
-  },
-
-  {
-    id: "30",
-    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
-    project: "Admin Dashboard",
-    address: "Washburn Baton Rouge",
-    date: "Yesterday",
-    status: "Approved",
-    orderId: "#CM9804",
-  },
-  {
-    id: "31",
-    user: { name: "Andi Lane", avatar: "/Female08.png" },
-    project: "App Landing Page",
-    address: "Nest Lane Olivette",
-    date: "Feb 2, 2023",
-    status: "Rejected",
-    orderId: "#CM9805",
-  },
-  {
-    id: "32",
-    user: { name: "Natali Craig", avatar: "/Female15.png" },
-    project: "Landing Page",
-    address: "Meadow Lane Oakland",
-    date: "Just now",
-    status: "In Progress",
-    orderId: "#CM9801",
-  },
-  {
-    id: "33",
-    user: { name: "Kate Morrison", avatar: "/Female09.png" },
-    project: "CRM Admin pages",
-    address: "Larry San Francisco",
-    date: "A minute ago",
-    status: "Complete",
-    orderId: "#CM9802",
-  },
-  {
-    id: "34",
-    user: { name: "Drew Cano", avatar: "/Male08.png" },
-    project: "Client Project",
-    address: "Bagwell Avenue Ocala",
-    date: "1 hour ago",
-    status: "Pending",
-    orderId: "#CM9803",
-  },
-
-  {
-    id: "37",
-    user: { name: "Natali Craig", avatar: "/Female15.png" },
-    project: "Landing Page",
-    address: "Meadow Lane Oakland",
-    date: "Just now",
-    status: "In Progress",
-    orderId: "#CM9801",
-  },
-  {
-    id: "35",
-    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
-    project: "Admin Dashboard",
-    address: "Washburn Baton Rouge",
-    date: "Yesterday",
-    status: "Approved",
-    orderId: "#CM9804",
-  },
-  {
-    id: "36",
-    user: { name: "Andi Lane", avatar: "/Female08.png" },
-    project: "App Landing Page",
-    address: "Nest Lane Olivette",
-    date: "Feb 2, 2023",
-    status: "Rejected",
-    orderId: "#CM9805",
-  },
-  {
-    id: "38",
-    user: { name: "Kate Morrison", avatar: "/Female09.png" },
-    project: "CRM Admin pages",
-    address: "Larry San Francisco",
-    date: "A minute ago",
-    status: "Complete",
-    orderId: "#CM9802",
-  },
-  {
-    id: "39",
-    user: { name: "Drew Cano", avatar: "/Male08.png" },
-    project: "Client Project",
-    address: "Bagwell Avenue Ocala",
-    date: "1 hour ago",
-    status: "Pending",
-    orderId: "#CM9803",
-  },
-  {
-    id: "40",
-    user: { name: "Orlando Diggs", avatar: "/Male06.png" },
-    project: "Admin Dashboard",
-    address: "Washburn Baton Rouge",
-    date: "Yesterday",
-    status: "Approved",
-    orderId: "#CM9804",
-  },
-  {
-    id: "41",
-    user: { name: "Andi Lane", avatar: "/Female08.png" },
-    project: "App Landing Page",
-    address: "Nest Lane Olivette",
-    date: "Feb 2, 2023",
-    status: "Rejected",
-    orderId: "#CM9805",
-  },
-  {
-    id: "42",
-    user: { name: "Natali Craig", avatar: "/Female15.png" },
-    project: "Landing Page",
-    address: "Meadow Lane Oakland",
-    date: "Just now",
-    status: "In Progress",
-    orderId: "#CM9801",
-  },
-];
-
-const ActionsBar = () => {
-  return (
-    <div className="flex items-center flex-1 h-[28px] gap-[8px] rounded-[8px] max-w-[900px]">
-      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded transition-colors">
-        <PlusIcon className="text-gray-700 dark:text-white" />
-      </button>
-      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded transition-colors">
-        <FilterIcon className="text-gray-700 dark:text-white" />
-      </button>
-      <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded transition-colors">
-        <SortIcon className="text-gray-700 dark:text-white" />
-      </button>
-    </div>
-  );
-};
-
-const SearchBar = () => {
-  return (
-    <div className="flex items-center bg-white dark:bg-black border-gray-300 dark:border-gray-600 w-[160px] h-[28px] gap-[4px] rounded-[8px] pt-[4px] pr-[8px] pb-[4px] pl-[8px] border-[1px]">
-      <SearchIcon />
-      <input
-        type="text"
-        placeholder="Search"
-        className="text-gray-900 dark:text-gray-100 bg-transparent placeholder-[#1C1C1C33] dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none min-w-0 flex-1 text-sm"
-      />
-    </div>
-  );
-};
-
 const OrderLists: React.FC = () => {
+  const [originalOrders, setOriginalOrders] = useState<Order[]>([]);
+  const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
   const [allChecked, setAllChecked] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | 'none'>('none');
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // Apply filters to orders
+  const applyFilters = (orders: Order[], filters: string[]) => {
+    if (filters.length === 0) {
+      return orders;
+    }
+    return orders.filter(order => filters.includes(order.status));
+  };
+
+  // Handle filter changes
+  const handleFilter = (statuses: string[]) => {
+    setActiveFilters(statuses);
+
+    let ordersToFilter;
+    if (searchQuery.trim() === "") {
+      ordersToFilter = originalOrders;
+    } else {
+      ordersToFilter = originalOrders.filter(order =>
+        order.user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        order.project.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        order.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        order.orderId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        order.status.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    const filtered = applyFilters(ordersToFilter, statuses);
+
+    let finalOrders = filtered;
+    if (sortOrder !== 'none') {
+      finalOrders = OrdersAPI.sortOrdersByDate(filtered, sortOrder);
+    }
+
+    setFilteredOrders(finalOrders);
+    setCheckedItems(new Set());
+    setAllChecked(false);
+  };
+
+  // Enhanced sort function with reset capability
+  const handleSort = () => {
+    let newSortOrder: 'asc' | 'desc' | 'none';
+    let sortedOrders: Order[];
+
+    switch (sortOrder) {
+      case 'none':
+        newSortOrder = 'desc';
+        sortedOrders = OrdersAPI.sortOrdersByDate(filteredOrders, 'desc');
+        break;
+      case 'desc':
+        newSortOrder = 'asc';
+        sortedOrders = OrdersAPI.sortOrdersByDate(filteredOrders, 'asc');
+        break;
+      case 'asc':
+        newSortOrder = 'none';
+        if (searchQuery.trim() === "") {
+          sortedOrders = [...originalOrders];
+        } else {
+          sortedOrders = originalOrders.filter(order =>
+            order.user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            order.project.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            order.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            order.orderId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            order.status.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+        }
+        sortedOrders = applyFilters(sortedOrders, activeFilters);
+        break;
+      default:
+        newSortOrder = 'none';
+        sortedOrders = [...filteredOrders];
+    }
+
+    setSortOrder(newSortOrder);
+    setFilteredOrders(sortedOrders);
+    setCheckedItems(new Set());
+    setAllChecked(false);
+  };
+
+  // Fetch orders on component mount
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        setLoading(true);
+        const ordersData = await OrdersAPI.fetchOrders();
+        setOriginalOrders([...ordersData]);
+        setFilteredOrders(ordersData);
+      } catch (err) {
+        console.error("Error fetching orders:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  // Handle search functionality
+  const handleSearch = async (query: string) => {
+    setSearchQuery(query);
+    setSortOrder('none');
+
+    try {
+      let searchResults;
+      if (query.trim() === "") {
+        searchResults = originalOrders;
+      } else {
+        searchResults = await OrdersAPI.searchOrders(query);
+      }
+
+      const filteredResults = applyFilters(searchResults, activeFilters);
+      setFilteredOrders(filteredResults);
+      setCheckedItems(new Set());
+      setAllChecked(false);
+    } catch (err) {
+      console.error("Search error:", err);
+      const filtered = originalOrders.filter(
+        (order) =>
+          order.user.name.toLowerCase().includes(query.toLowerCase()) ||
+          order.project.toLowerCase().includes(query.toLowerCase()) ||
+          order.address.toLowerCase().includes(query.toLowerCase()) ||
+          order.orderId.toLowerCase().includes(query.toLowerCase()) ||
+          order.status.toLowerCase().includes(query.toLowerCase())
+      );
+
+      const filteredResults = applyFilters(filtered, activeFilters);
+      setFilteredOrders(filteredResults);
+    }
+  };
 
   const handleMasterCheckbox = () => {
     if (allChecked) {
       setCheckedItems(new Set());
       setAllChecked(false);
     } else {
-      setCheckedItems(new Set(orders.map((order) => order.id)));
+      setCheckedItems(new Set(filteredOrders.map((order) => order.id)));
       setAllChecked(true);
     }
   };
@@ -443,8 +163,36 @@ const OrderLists: React.FC = () => {
       newCheckedItems.add(orderId);
     }
     setCheckedItems(newCheckedItems);
-    setAllChecked(newCheckedItems.size === orders.length);
+    setAllChecked(
+      newCheckedItems.size === filteredOrders.length &&
+        filteredOrders.length > 0
+    );
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="w-full transition-all duration-300 ease-in-out ml-7">
+        <div className="space-y-6">
+          <div className="w-[83px] h-[28px] top-[96px] left-[240px] rounded-[8px] pt-[4px] pr-[8px] pb-[4px] pl-[8px] flex items-center">
+            <h1 className="font-inter font-semibold text-[14px] leading-[20px] tracking-[0%] text-gray-900 dark:text-white">
+              Order List
+            </h1>
+          </div>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="bg-white dark:bg-black w-full max-w-[1172px] min-h-[600px] mt-[16px] flex flex-col gap-[12px] p-0 rounded-lg transition-all duration-300 ease-in-out"
+        >
+          <div className="flex items-center justify-center h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-white"></div>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full transition-all duration-300 ease-in-out ml-7">
@@ -466,22 +214,39 @@ const OrderLists: React.FC = () => {
       >
         {/* Table Header Actions */}
         <div className="flex items-center justify-between bg-[#F7F9FB] dark:bg-[#18181b] opacity-100 w-[calc(100%-24px)] h-[44px] rounded-[8px] p-[8px] mx-[12px] mt-[12px] transition-all duration-300 ease-in-out">
-          <ActionsBar />
-          <SearchBar />
+          <ActionsBar
+            onSort={handleSort}
+            sortOrder={sortOrder}
+            onFilter={handleFilter}
+            activeFilters={activeFilters}
+            isFilterOpen={isFilterOpen}
+            setIsFilterOpen={setIsFilterOpen}
+          />
+          <SearchBar onSearch={handleSearch} />
         </div>
 
         {/* Order Table Container */}
         <div className="overflow-auto mx-[12px] mb-[12px] transition-all duration-300 ease-in-out min-h-[480px]">
-          <OrderTable
-            orders={orders}
-            checkedItems={checkedItems}
-            allChecked={allChecked}
-            handleMasterCheckbox={handleMasterCheckbox}
-            handleItemCheckbox={handleItemCheckbox}
-          />
+          {filteredOrders.length === 0 && searchQuery ? (
+            <div className="flex items-center justify-center h-[400px]">
+              <div className="text-center">
+                <div className="text-gray-500 text-lg mb-2">🔍</div>
+                <div className="text-gray-600 dark:text-gray-400">
+                  No orders found for "{searchQuery}"
+                </div>
+              </div>
+            </div>
+          ) : (
+            <OrderTable
+              orders={filteredOrders}
+              checkedItems={checkedItems}
+              allChecked={allChecked}
+              handleMasterCheckbox={handleMasterCheckbox}
+              handleItemCheckbox={handleItemCheckbox}
+            />
+          )}
         </div>
       </motion.div>
-
     </div>
   );
 };
