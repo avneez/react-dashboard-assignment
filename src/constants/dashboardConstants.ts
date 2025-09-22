@@ -1,34 +1,33 @@
 // Metric cards data
 export const METRICS = [
-  {
-    title: "Customers",
-    value: "3,781",
-    change: "+11.01%",
-    isPositive: true,
-    icon: "users"
-  },
-  {
-    title: "Orders",
-    value: "1,219",
-    change: "-0.03%",
-    isPositive: false,
-    icon: "shopping-bag"
-  },
-  {
-    title: "Revenue",
-    value: "$695",
-    change: "+15.03%",
-    isPositive: true,
-    icon: "dollar-sign"
-  },
-  {
-    title: "Growth",
-    value: "30.1%",
-    change: "+6.08%",
-    isPositive: true,
-    icon: "trending-up"
-  }
-];
+    {
+      title: 'Customers',
+      value: '3,781',
+      change: '+11.01%',
+      isPositive: true,
+      bgColor: '#E3F5FF',
+    },
+    {
+      title: 'Orders',
+      value: '1,219',
+      change: '-0.03%',
+      isPositive: false,
+    },
+    {
+      title: 'Revenue',
+      value: '$695',
+      change: '+15.03%',
+      isPositive: true,
+    },
+    {
+      title: 'Growth',
+      value: '30.1%',
+      change: '+6.08%',
+      isPositive: true,
+      bgColor: '#E5ECF6',
+    },
+  ];
+
 
 // Total sales data for chart
 export const RAW_SALES_DATA = [
